@@ -1,0 +1,31 @@
+{
+  "name": "@thaerious/nidgetdev",
+  "version": "1.0.0",
+  "keywords": [
+    "util",
+    "functional",
+    "server",
+    "client",
+    "browser"
+  ],
+  "author": "Ed Armstrong",
+  "contributors": [],
+  "dependencies": {
+    "@thaerious/nidget": "file:../Nidget",
+    "jquery": "^3.3.1"
+  },
+  "scripts": {
+    "build-css": "sass src/scss/main.scss public_html/compiled.css",
+    "watch-css": "sass src/scss/main.scss public_html/compiled.css --watch",
+    "build-js": "browserify src/js/main.js -o public_html/compiled.js -d",
+    "watch-js": "watchify src/js/main.js -o public_html/compiled.js -dv",
+    "build": "npm run build-js && npm run build-css"
+  },
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {},
+  "license": "ISC",
+  "description": ""
+}

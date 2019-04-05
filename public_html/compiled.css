@@ -1,0 +1,25 @@
+#mapAnchor {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+
+.hex-container-element {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+.hex-container-element .label {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  font-size: large;
+}
+.hex-container-element .left {
+  left: 15%;
+}
+.hex-container-element .right {
+  right: 15%;
+}
+
+/*# sourceMappingURL=compiled.css.map */
