@@ -1,0 +1,126 @@
+* {        
+    position: absolute;
+    box-sizing:content-box;
+}
+
+:host(*){
+    position: absolute;
+}
+
+:host([data-pid='1']){
+    left: 0px;
+}
+
+:host([data-pid='2']){
+    left: 300px;
+}
+
+:host([data-pid='3']){
+    left: 600px;
+}
+
+:host([data-pid='4']){
+    left: 900px;
+}
+
+:host([data-pid='1']) .name{
+    -webkit-text-fill-color: red;
+}
+
+:host([data-pid='2']) .name{
+    -webkit-text-fill-color: blue;    
+}
+
+:host([data-pid='3']) .name{
+    -webkit-text-fill-color: green;
+}
+
+:host([data-pid='4']) .name{
+    -webkit-text-fill-color: white;    
+}
+
+/*:host{
+    position: absolute;
+    height: 250px;
+    width: 250px;
+    border: 1px solid black;
+}
+
+{
+    -webkit-text-fill-color: red;
+}
+
+:host-context([data-pid='2']).name{
+    -webkit-text-fill-color: blue;
+    left: 300px;
+}*/
+
+.playerDialog{
+    position: absolute;
+    font-family: arial;
+    font-size: 39px;
+    height: 250px;
+    width: 250px;
+    
+}
+
+.background{
+    height: 100%;
+    width: 100%;
+}    
+
+.name{
+    top: 7%;
+    height: 17%;
+    vertical-align: middle;
+    font-weight: bold;
+    text-align: center;   
+    width: 100%;
+    -webkit-text-stroke: 2px black;  
+}
+
+:host[data-pid='1']{
+    -webkit-text-fill-color: blue;
+    border: 1px solid black;
+}
+
+:host[data-pid='2']{
+    -webkit-text-fill-color: red;
+    border: 1px solid black;
+    left: 200px;
+}
+
+.number{    
+    font-size: 0.75em;
+    vertical-align: middle;
+    height: 13.4%;
+    width: 6.5%;
+}
+
+.number.left{
+    left: 29%;
+}
+      
+.number.right{
+    left: 62%;
+}
+
+.number.left.top{
+    top: 35%;
+}
+
+.number.left.middle{
+    top: 55%;
+}
+
+.number.left.bottom{
+    top: 74%;
+}
+
+.number.right.top{
+    top: 45%;
+}
+
+.number.right.bottom{
+    top: 64%;
+}

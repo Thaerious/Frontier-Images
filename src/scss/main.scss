@@ -1,29 +1,6 @@
+/*@import './playerDialog';*/
+@import './bank';
+@import './store';
 
-#mapAnchor{
-    position: absolute;
-    left: 50%;
-    top: 50%;
-}
-
-.hex-container-element{
-    position: absolute;
-    left: 50%;
-    top: 50%;   
-    
-    .label{
-        position: absolute;
-        top: 50%;
-        transform: translate(0, -50%);
-        font-size: large;
-    }
-    
-    .left{
-        left: 15%;
-    }
-
-    .right{
-        right: 15%;
-    }    
-}
-
-
+@import '../../node_modules/@thaerious/nidget/styles/Nidget-Placement';
+ 

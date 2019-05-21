@@ -1,25 +1,80 @@
-#mapAnchor {
+/*@import './playerDialog';*/
+.bank {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  font-family: arial;
+  font-size: 30px;
+  /*width: 40px;*/
+  /*height: 120px;*/
+}
+.bank .background {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+.bank .text-container {
   position: absolute;
-  left: 50%;
-  top: 50%;
+  display: flex;
+  flex-direction: column;
+  left: 10px;
+  top: 10px;
+  width: 78px;
+  height: 174px;
+  font-weight: bolder;
+}
+.bank .text-container .resource {
+  position: relative;
+  height: 20%;
+}
+.bank .text-container .resource .text {
+  position: absolute;
+  left: 15px;
+  top: 1px;
 }
 
-.hex-container-element {
+#store {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  /* right-bottom affixes the div so I used left-top-transform instead */
+  left: calc(100% - 5px);
+  top: calc(100% - 5px);
+  transform: translate(-100%, -100%);
+}
+#store .header {
+  position: relative;
+  height: calc(50 / 226 * 100%);
+}
+#store .background {
+  position: relative;
+  height: calc(176 / 226 * 100%);
+}
+#store .inner {
   position: absolute;
-  left: 50%;
-  top: 50%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  height: calc(160 / 226 * 100%);
+  width: calc(290 / 314 * 100%);
+  left: calc(12 / 314 * 100%);
+  top: calc(77 / 314 * 100%);
 }
-.hex-container-element .label {
-  position: absolute;
-  top: 50%;
-  transform: translate(0, -50%);
-  font-size: large;
+#store .inner nidget-button {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  height: 25%;
 }
-.hex-container-element .left {
-  left: 15%;
-}
-.hex-container-element .right {
-  right: 15%;
-}
+
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/*
+    Created on : Apr 28, 2019, 10:01:06 AM
+    Author     : Ed Armstrong
+*/
 
 /*# sourceMappingURL=compiled.css.map */

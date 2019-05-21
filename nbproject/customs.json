@@ -1,0 +1,30 @@
+{
+    "elements": {
+        "hex-element": {
+            "attributes": {
+                "src": {}
+            }
+        },
+        "nidget-element": {
+            "attributes": {
+                "template": {},
+                "src": {},
+                "id": {},
+                "class": {}
+            }
+        },
+        "hex-anchor": {
+            "attributes": {
+                "hexWidth": {},
+                "id": {},
+                "hexHeight": {}
+            }
+        },
+        "nidget-button": {
+            "attributes": {
+                "prefix": {}
+            }
+        }
+    },
+    "attributes": {}
+}

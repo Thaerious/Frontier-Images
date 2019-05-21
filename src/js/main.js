@@ -1,42 +1,28 @@
 "use strict";
 const $ = window.$ ? window.$ : require("jquery");
-const Nidget = require("@thaerious/nidget").Nidget;
-const FileOperations = require("@thaerious/nidget").FileOperations;
-const HexLayoutManager = require("./HexLayoutManager");
+const NidgetElement = require("@thaerious/nidget").NidgetElement;
+const ButtonNidget = require("@thaerious/nidget").ButtonNidget;
+//const HexAnchor = require("./HexAnchor");
+//const TileElement = require("./TileElement");
+//const Store = require("./Store");
 
-window.onload = function(){
+//const TileType = TileElement.TileType;
+//
+
+window.addEventListener("load", ()=>{
     let main = new Main();
     main.start();
-};
+});
 
 class Main{
-    
-    constructor(){
-        
-    }
-    
     async start(){
-        console.log("main.start");     
+//        $("#store").on("click", (event)=>{
+//            console.log(event);
+//        });
         
-        await FileOperations.loadNidget("assets/fragments/hex.frag.html");        
-        this.mapAnchor = new HexLayoutManager(document.querySelector("#mapAnchor"), 120, 104);
-        
-        let hex = await FileOperations.loadNidget("assets/fragments/hex.frag.html");
-        this.mapAnchor.appendChild(hex, 0, 0);
-        hex.setText(".left", "q:0");
-        hex.setText(".right", "r:0");
-        hex = await FileOperations.loadNidget("assets/fragments/hex.frag.html");
-        this.mapAnchor.appendChild(hex, 1,0);
-        hex.setText(".left", "q:1");
-        hex.setText(".right", "r:0");
-        hex = await FileOperations.loadNidget("assets/fragments/hex.frag.html");
-        this.mapAnchor.appendChild(hex, 2,0);
-        hex.setText(".left", "q:2");
-        hex.setText(".right", "r:0");
-        hex = await FileOperations.loadNidget("assets/fragments/hex.frag.html");
-        this.mapAnchor.appendChild(hex, 2,1);
-        hex.setText(".left", "q:2");
-        hex.setText(".right", "r:1");
-        
+//        $("#mapAnchor")[0].appendChild(new TileElement(TileType.WATER), 0, 0);
+//        $("#mapAnchor")[0].appendChild(new TileElement(TileType.DESERT), 1, 0);
+//        $("#mapAnchor")[0].appendChild(new TileElement(TileType.PASTURE), -1, 0);
+//        $("#mapAnchor")[0].appendChild(new TileElement(TileType.DESERT), 3, -1, -2);
     }    
 }

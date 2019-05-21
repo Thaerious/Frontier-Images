@@ -14,6 +14,49 @@ and open the template in the editor.
         <script src="compiled.js" type="text/javascript"></script>
     </head>
     <body>
-        <div id="mapAnchor"></div>
+
+        <template id="playerDialog">
+            <div class="playerDialog">
+                <link href="styles/playerDialog.css" rel="stylesheet" type="text/css"/>
+                <image class="background" src="assets/images/new/player-dialog.png"/>    
+                <div id="name" class="name">NAME</div>
+                <div id="vp" class="number left top">0</div>
+                <div id="soldier" class="number left middle">0</div>
+                <div id="road" class="number left bottom">0</div>
+                <div id="resource" class="number right top">0</div>
+                <div id="utility" class="number right bottom">0</div>
+            </div>        
+        </template>
+
+    <nidget-element id="store" interfaces="movable">
+        <img class="header nidget-header" src="assets/images/new/store-header.png" alt=""/>
+        <img class="background" src="assets/images/new/store-background.png" alt=""/>
+        <div class="inner">
+            <nidget-button id="bRoad" prefix="assets/images/new/store-road" disabled></nidget-button>
+            <nidget-button id="bVillage" prefix="assets/images/new/store-village"></nidget-button>
+            <nidget-button id="bCity" prefix="assets/images/new/store-city"></nidget-button>
+            <nidget-button id="bCard" prefix="assets/images/new/store-card"></nidget-button>
+        </div>
+    </nidget-element>
+
+    <nidget-element class="bank">
+        <image class="background" src="assets/images/new/bank.png"/>  
+        <div class="text-container">
+            <div data-cat="ore" class="resource one"><div class="text">0</div></div>
+            <div data-cat="wheat" class="resource two"><div class="text">0</div></div>
+            <div data-cat="wood" class="resource three"><div class="text">0</div></div>
+            <div data-cat="wool" class="resource four"><div class="text">0</div></div>
+            <div data-cat="brick" class="resource five"><div class="text">0</div></div>
+        </div>
+    </nidget-element>
+
+        <!--    <nidget-element data-pid="1" template="playerDialog"></nidget-element>
+            <nidget-element data-pid="2" template="playerDialog"></nidget-element>
+            <nidget-element data-pid="3" template="playerDialog"></nidget-element>
+            <nidget-element data-pid="4" template="playerDialog"></nidget-element>-->
+
+        <hex-anchor id="mapAnchor" hexWidth="120" hexHeight="104">        
+        </hex-anchor>
+
     </body>
 </html>

@@ -1,0 +1,38 @@
+#store{  
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    
+    /* right-bottom affixes the div so I used left-top-transform instead */
+    left: calc(100% - 5px);
+    top: calc(100% - 5px);
+    transform: translate(-100%, -100%);
+
+    .header{
+        position: relative;
+        height: calc(50 / 226 * 100%);       
+    }
+    
+    .background{
+        position: relative;
+        height: calc(176 / 226 * 100%);       
+    }
+    
+    .inner{
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+        height: calc(160 / 226 * 100%);
+        width: calc(290 / 314 * 100%);
+        left: calc(12 / 314 * 100%);
+        top: calc(77 / 314 * 100%);
+        
+        nidget-button{
+            position: relative;
+            box-sizing: border-box;
+            width: 100%;
+            height: 25%;
+        }
+    }
+}
