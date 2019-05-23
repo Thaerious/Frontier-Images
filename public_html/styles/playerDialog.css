@@ -39,22 +39,6 @@
     -webkit-text-fill-color: white;    
 }
 
-/*:host{
-    position: absolute;
-    height: 250px;
-    width: 250px;
-    border: 1px solid black;
-}
-
-{
-    -webkit-text-fill-color: red;
-}
-
-:host-context([data-pid='2']).name{
-    -webkit-text-fill-color: blue;
-    left: 300px;
-}*/
-
 .playerDialog{
     position: absolute;
     font-family: arial;
