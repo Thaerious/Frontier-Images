@@ -10,12 +10,13 @@ and open the template in the editor.
         <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon"> 
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="compiled.css" rel="stylesheet" type="text/css"/>
+        <link href="css/main.css" rel="stylesheet" type="text/css"/>
+        <link href="css/custom.css" rel="stylesheet" type="text/css"/>
         <script src="compiled.js" type="text/javascript"></script>
     </head>
     <body>
 
-    <nidget-element src="assets/fragments/hex.frag.html" data-src="assets/images/holder.png"></nidget-element>        
+    <!--<nidget-element src="assets/fragments/hex.frag.html" data-src="assets/images/holder.png"></nidget-element>-->        
         
         <template id="playerDialog">
             <div class="playerDialog">
@@ -30,6 +31,13 @@ and open the template in the editor.
             </div>        
         </template>
 
+    <nidget-button class="test-button">
+        <nidget-button-state state="IDLE" image-src="assets/images/new/store-card-idle.png"></nidget-button-state>
+        <nidget-button-state state="HOVER" image-src="assets/images/new/store-card-hover.png"></nidget-button-state>
+        <nidget-button-state state="DISABLED" image-src="assets/images/new/store-card-disabled.png"></nidget-button-state>
+        <nidget-button-state state="PRESS" image-src="assets/images/new/store-card-press.png"></nidget-button-state>
+    </nidget-button>
+    
 <!--    <nidget-element id="store" interfaces="movable">
         <img class="header nidget-header" src="assets/images/new/store-header.png" alt=""/>
         <img class="background" src="assets/images/new/store-background.png" alt=""/>

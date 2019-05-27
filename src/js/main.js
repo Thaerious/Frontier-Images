@@ -1,7 +1,7 @@
 "use strict";
 const $ = window.$ ? window.$ : require("jquery");
 const NidgetElement = require("@thaerious/nidget").NidgetElement;
-const ButtonNidget = require("@thaerious/nidget").ButtonNidget;
+const ButtonNidget = require("@thaerious/nidget").NigetButton;
 //const HexAnchor = require("./HexAnchor");
 //const TileElement = require("./TileElement");
 //const Store = require("./Store");

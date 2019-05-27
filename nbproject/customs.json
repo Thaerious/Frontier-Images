@@ -1,5 +1,12 @@
 {
     "elements": {
+        "nidget-button-state": {
+            "attributes": {
+                "image-src": {},
+                "src": {},
+                "state": {}
+            }
+        },
         "hex-element": {
             "attributes": {
                 "src": {}
@@ -22,7 +29,8 @@
         },
         "nidget-button": {
             "attributes": {
-                "prefix": {}
+                "prefix": {},
+                "class": {}
             }
         }
     },

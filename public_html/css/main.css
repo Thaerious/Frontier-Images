@@ -29,7 +29,7 @@
 }
 .bank .text-container .resource .text {
   position: absolute;
-  left: 15px;
+  left: 12px;
   top: 1px;
 }
 
@@ -67,14 +67,21 @@
   height: 25%;
 }
 
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/*
-    Created on : Apr 28, 2019, 10:01:06 AM
-    Author     : Ed Armstrong
-*/
+nidget-button-state {
+  position: absolute;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  left: 0px;
+  top: 0px;
+}
+nidget-button-state img {
+  position: absolute;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  left: 0px;
+  top: 0px;
+}
 
-/*# sourceMappingURL=compiled.css.map */
+/*# sourceMappingURL=main.css.map */
