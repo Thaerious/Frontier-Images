@@ -1,6 +1,15 @@
 "use strict";
 const $ = window.$ ? window.$ : require("jquery");
 
+// (z)
+//   \
+//    \ 
+//     o------(x)
+//    /
+//   / 
+// (y)
+// - when inwards, + when outwards
+
 class AxialMap extends Map {
 
     constructor() {
@@ -26,7 +35,7 @@ class Axial {
         } else {
             this.x = x;
             this.y = y;
-            this.z = z;                       
+            this.z = z;
         }
         if (this.z === undefined) this.z = -this.x - this.y;
     }

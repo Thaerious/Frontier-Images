@@ -3,11 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/project-local/trunk/NidgetDev/public_html/assets/fragments/hex.frag.html</file>
-            <file>file:/D:/project-local/trunk/NidgetDev/src/scss/main.scss</file>
-            <file>file:/D:/project-local/trunk/NidgetDev/src/scss/playerDialog.scss</file>
+            <file>file:/D:/project-local/trunk/NidgetDev/src/js/Axial.js</file>
+            <file>file:/D:/project-local/trunk/NidgetDev/src/js/HexElement.js</file>
+            <file>file:/D:/project-local/trunk/NidgetDev/src/js/RadialHexCollection.js</file>
+            <file>file:/D:/project-local/trunk/NidgetDev/src/js/HexAnchor.js</file>
+            <file>file:/D:/project-local/trunk/NidgetDev/src/js/main.js</file>
             <file>file:/D:/project-local/trunk/NidgetDev/public_html/index.html</file>
-            <file>file:/D:/project-local/trunk/NidgetDev/public_html/styles/playerDialog.css</file>
         </group>
     </open-files>
 </project-private>

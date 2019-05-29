@@ -1,46 +1,78 @@
 "use strict";
 const $ = window.$ ? window.$ : require("jquery");
-const Nidget = require("@thaerious/nidget").Nidget;
+const NidgetElement = require("@thaerious/nidget").NidgetElement;
+const HexElement = require("./HexElement");
 const Axial = require("./Axial");
 
-class HexAnchor extends Nidget {
+class HexAnchor extends NidgetElement {
 
     constructor(element, width, height) {
         super(element);
-        console.log("here");
         this.width = width;
         this.height = height;
         this.map = new Map();
+
+        /* see https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver */
+        let config = {attributes: true, childList: true, subtree: true, attributeFilter: ["axial"]};
+        this.observer = new MutationObserver((mr, obs) => this.onMutation(mr, obs));
+        this.observer.observe(this, config);
     }
 
-    connectedCallback(){
+    connectedCallback() {
         super.connectedCallback();
         if (!this.hasAttribute(HexAnchor.widthAttribute)) throw new Error(`missing attribute on hex-anchor: ${HexAnchor.widthAttribute}`);
-        if (!this.hasAttribute(HexAnchor.heightAttribute)) throw new Error(`missing attribute on hex-anchor: ${HexAnchor.heightAttribute}`);        
+        if (!this.hasAttribute(HexAnchor.heightAttribute)) throw new Error(`missing attribute on hex-anchor: ${HexAnchor.heightAttribute}`);
         this.width = this.getAttribute(HexAnchor.widthAttribute);
         this.height = this.getAttribute(HexAnchor.heightAttribute);
     }
 
-    /**
-     * Center element around the row,col hex.
-     * See axial co-ordinates https://www.redblobgames.com/grids/hexagons/
-     * @param {type} element
-     * @param {type} x
-     * @param {type} y
-     * @return {undefined}
-     */
-    appendChild(nidget, x, y, z) {
-        super.appendChild(nidget);     
-        $(nidget).css("position", "absolute");
-        $(nidget).css("transform", "translate(-50%, -50%)");
+    onMutation(mutationRecords, observer) {
+        for (let mutationRecord of mutationRecords) {
+            this._onMutation(mutationRecord);
+        }
+    }
+
+    onAdd(hexElement){
+        this.locate(hexElement);
+    }
+
+    _onMutation(mutationRecord) {
+        let added = mutationRecord.addedNodes;
+        for (let i = 0; i < added.length; i++) {
+            if (added[i] instanceof HexElement) {
+                this.onAdd(added[i]);
+            }
+        }
         
-        let ax = Axial.toAxial(x, y, z);
+        if (mutationRecord.attributeName === "axial"){
+            this.locate(mutationRecord.target);
+        }
+    }
 
-        if (Axial.isHex(ax)) this.__appendHex(nidget, ax);
-        else if (Axial.isEdge(ax)) this.__appendEdge(nidget, ax);
-        else this.__appendCorner(nidget, ax);
+    locate(hexElement) {
+        if (hexElement instanceof HexElement === false) {
+            throw "Only HexElement elements can be located on HexAnchor elements";
+        }
 
-        this.map.set(nidget, ax);
+        $(hexElement).css("position", "absolute");
+        $(hexElement).css("transform", "translate(-50%, -50%)");
+
+        let ax = hexElement.axial;
+        let loc = null;
+
+        if (Axial.isHex(ax)) {
+            loc = this.hexLoc(ax);
+        } else if (Axial.isEdge(ax)) {
+            loc = this.edgeLoc(ax);
+        } else if (Axial.isCorner(ax)) {
+            loc = this.cornerLoc(ax);
+        } else {
+            throw "Invalid axial: " + ax;
+        }
+
+        hexElement.top(loc.y);
+        hexElement.left(loc.x);
+        this.map.set(hexElement, ax);
     }
 
     /**
@@ -48,9 +80,7 @@ class HexAnchor extends Nidget {
      * @param {type} x
      * @param {type} y
      */
-    hexLoc(x, y, z) {
-        let ax = Axial.toAxial(x, y, z);
-
+    hexLoc(ax) {
         let left = 3 / 4 * ax.x * this.width;
         let top = ax.y * this.height;
         top += this.height / 2 * ax.x;
@@ -63,17 +93,17 @@ class HexAnchor extends Nidget {
      * @param {type} y
      * @param {type} z
      */
-    cornerLoc(x, y, z) {
-        let ax = Axial.toAxial(x, y, z);
-
+    cornerLoc(ax) {
         let hexLoc = null;
+
         if (ax.x + ax.y + ax.z === 1) {
-            hexLoc = this.hexLoc(ax.x - 1, ax.y);
+            hexLoc = this.hexLoc(new Axial(ax.x - 1, ax.y));
             hexLoc.x += 0.5 * this.width;
         } else {
-            hexLoc = this.hexLoc(ax.x, ax.y - 1);
+            hexLoc = this.hexLoc(new Axial(ax.x, ax.y - 1));
             hexLoc.x -= 0.5 * this.width;
         }
+
         return hexLoc;
     }
 
@@ -85,9 +115,8 @@ class HexAnchor extends Nidget {
      * @param {type} y
      * @param {type} z
      */
-    edgeLoc(x, y, z) {
-        let ax = Axial.toAxial(x, y, z);
-        let loc = this.cornerLoc(Math.floor(ax.x), Math.floor(ax.y), Math.floor(ax.z));
+    edgeLoc(ax) {
+        let loc = this.cornerLoc(new Axial(Math.floor(ax.x), Math.floor(ax.y), Math.floor(ax.z)));
 
         if (Math.floor(ax.x) !== ax.x) {
             loc.x += this.width / 4;
@@ -102,29 +131,8 @@ class HexAnchor extends Nidget {
         return loc;
     }
 
-    __appendEdge(nidget, x, y, z) {
-        let ax = Axial.toAxial(x, y, z);
-        let loc = this.edgeLoc(ax);
-        nidget.top(loc.y);
-        nidget.left(loc.x);
-    }
-
-    __appendCorner(nidget, x, y, z) {
-        let ax = Axial.toAxial(x, y, z);
-        let loc = this.cornerLoc(ax);
-        nidget.top(loc.y);
-        nidget.left(loc.x);
-    }
-
-    __appendHex(nidget, x, y, z) {
-        let ax = Axial.toAxial(x, y, z);
-        let loc = this.hexLoc(ax);
-        nidget.top(loc.y);
-        nidget.left(loc.x);
-    }
-
-    getAxial(nidget) {
-        return this.map.get(nidget);
+    getAxial(hexElement) {
+        return this.map.get(hexElement);
     }
 }
 

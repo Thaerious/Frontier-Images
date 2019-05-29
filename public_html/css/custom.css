@@ -1,7 +1,5 @@
-.test-button{
+#mapAnchor{
     position: absolute;
-    width: 288px;
-    height: 40px;
-    left: 50px;
-    background-color: red;
+    left: 50%;
+    top: 50%;
 }

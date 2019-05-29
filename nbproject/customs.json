@@ -9,6 +9,7 @@
         },
         "hex-element": {
             "attributes": {
+                "axial": {},
                 "src": {}
             }
         },
@@ -27,12 +28,23 @@
                 "hexHeight": {}
             }
         },
+        "radial-hex-collection": {
+            "attributes": {
+                "size": {},
+                "src": {},
+                "id": {},
+                "hexHeight": {}
+            }
+        },
         "nidget-button": {
             "attributes": {
                 "prefix": {},
+                "id": {},
                 "class": {}
             }
         }
     },
-    "attributes": {}
+    "attributes": {
+        "hexWidth": {}
+    }
 }

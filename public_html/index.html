@@ -16,8 +16,8 @@ and open the template in the editor.
     </head>
     <body>
 
-    <!--<nidget-element src="assets/fragments/hex.frag.html" data-src="assets/images/holder.png"></nidget-element>-->        
-        
+        <!--<nidget-element src="assets/fragments/hex.frag.html" data-src="assets/images/holder.png"></nidget-element>-->        
+
         <template id="playerDialog">
             <div class="playerDialog">
                 <link href="styles/playerDialog.css" rel="stylesheet" type="text/css"/>
@@ -31,42 +31,58 @@ and open the template in the editor.
             </div>        
         </template>
 
-    <nidget-button class="test-button">
-        <nidget-button-state state="IDLE" image-src="assets/images/new/store-card-idle.png"></nidget-button-state>
-        <nidget-button-state state="HOVER" image-src="assets/images/new/store-card-hover.png"></nidget-button-state>
-        <nidget-button-state state="DISABLED" image-src="assets/images/new/store-card-disabled.png"></nidget-button-state>
-        <nidget-button-state state="PRESS" image-src="assets/images/new/store-card-press.png"></nidget-button-state>
-    </nidget-button>
-    
-<!--    <nidget-element id="store" interfaces="movable">
+    <nidget-element id="store" interfaces="movable">
         <img class="header nidget-header" src="assets/images/new/store-header.png" alt=""/>
         <img class="background" src="assets/images/new/store-background.png" alt=""/>
         <div class="inner">
-            <nidget-button id="bRoad" prefix="assets/images/new/store-road" disabled></nidget-button>
-            <nidget-button id="bVillage" prefix="assets/images/new/store-village"></nidget-button>
-            <nidget-button id="bCity" prefix="assets/images/new/store-city"></nidget-button>
-            <nidget-button id="bCard" prefix="assets/images/new/store-card"></nidget-button>
+            <nidget-button id="bRoad">
+                <nidget-button-state state="IDLE" image-src="assets/images/new/store-road-idle.png"></nidget-button-state>
+                <nidget-button-state state="HOVER" image-src="assets/images/new/store-road-hover.png"></nidget-button-state>
+                <nidget-button-state state="DISABLED" image-src="assets/images/new/store-road-disabled.png"></nidget-button-state>
+                <nidget-button-state state="PRESS" image-src="assets/images/new/store-road-press.png"></nidget-button-state>
+            </nidget-button>
+            <nidget-button id="bVillage" disabled>
+                <nidget-button-state state="IDLE" image-src="assets/images/new/store-village-idle.png"></nidget-button-state>
+                <nidget-button-state state="HOVER" image-src="assets/images/new/store-village-hover.png"></nidget-button-state>
+                <nidget-button-state state="DISABLED" image-src="assets/images/new/store-village-disabled.png"></nidget-button-state>
+                <nidget-button-state state="PRESS" image-src="assets/images/new/store-village-press.png"></nidget-button-state>
+            </nidget-button>
+            <nidget-button id="bCity">
+                <nidget-button-state state="IDLE" image-src="assets/images/new/store-city-idle.png"></nidget-button-state>
+                <nidget-button-state state="HOVER" image-src="assets/images/new/store-city-hover.png"></nidget-button-state>
+                <nidget-button-state state="DISABLED" image-src="assets/images/new/store-city-disabled.png"></nidget-button-state>
+                <nidget-button-state state="PRESS" image-src="assets/images/new/store-city-press.png"></nidget-button-state>
+            </nidget-button>
+            <nidget-button id="bCard">
+                <nidget-button-state state="IDLE" image-src="assets/images/new/store-card-idle.png"></nidget-button-state>
+                <nidget-button-state state="HOVER" image-src="assets/images/new/store-card-hover.png"></nidget-button-state>
+                <nidget-button-state state="DISABLED" image-src="assets/images/new/store-card-disabled.png"></nidget-button-state>
+                <nidget-button-state state="PRESS" image-src="assets/images/new/store-card-press.png"></nidget-button-state>
+            </nidget-button>
         </div>
     </nidget-element>
 
-    <nidget-element class="bank">
-        <image class="background" src="assets/images/new/bank.png"/>  
-        <div class="text-container">
-            <div data-cat="ore" class="resource one"><div class="text">0</div></div>
-            <div data-cat="wheat" class="resource two"><div class="text">0</div></div>
-            <div data-cat="wood" class="resource three"><div class="text">0</div></div>
-            <div data-cat="wool" class="resource four"><div class="text">0</div></div>
-            <div data-cat="brick" class="resource five"><div class="text">0</div></div>
-        </div>
-    </nidget-element>-->
+    <!--
+        <nidget-element class="bank">
+            <image class="background" src="assets/images/new/bank.png"/>  
+            <div class="text-container">
+                <div data-cat="ore" class="resource one"><div class="text">0</div></div>
+                <div data-cat="wheat" class="resource two"><div class="text">0</div></div>
+                <div data-cat="wood" class="resource three"><div class="text">0</div></div>
+                <div data-cat="wool" class="resource four"><div class="text">0</div></div>
+                <div data-cat="brick" class="resource five"><div class="text">0</div></div>
+            </div>
+        </nidget-element>-->
 
-<!--            <nidget-element data-pid="1" template="playerDialog"></nidget-element>
-            <nidget-element data-pid="2" template="playerDialog"></nidget-element>
-            <nidget-element data-pid="3" template="playerDialog"></nidget-element>
-            <nidget-element data-pid="4" template="playerDialog"></nidget-element>
+    <!--<nidget-element data-pid="1" template="playerDialog"></nidget-element>-->
+    <!--<nidget-element data-pid="2" template="playerDialog"></nidget-element>-->
+    <!--<nidget-element data-pid="3" template="playerDialog"></nidget-element>-->
+    <!--<nidget-element data-pid="4" template="playerDialog"></nidget-element>-->
 
-        <hex-anchor id="mapAnchor" hexWidth="120" hexHeight="104">        
-        </hex-anchor>-->
+    <radial-hex-collection id="mapAnchor" hexWidth="120" hexHeight="104" img="assets/images/hex/WATER.png" size="2">
+        <hex-element src="assets/images/hex/DESERT.png"></hex-element>
+        <hex-element src="assets/images/hex/FOREST.png"></hex-element>
+    </radial-hex-collection>
 
-    </body>
+</body>
 </html>
