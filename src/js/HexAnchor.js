@@ -8,15 +8,29 @@ class HexAnchor extends NidgetElement {
 
     constructor(element, width, height) {
         super(element);
-        this.width = width;
-        this.height = height;
         this.map = new Map();
 
         /* see https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver */
-        let config = {attributes: true, childList: true, subtree: true, attributeFilter: ["axial"]};
+        let config = {attributes: true, childList: true, subtree: true, attributeFilter: ["axial", "hexwidth", "hexheight"]};
         this.observer = new MutationObserver((mr, obs) => this.onMutation(mr, obs));
         this.observer.observe(this, config);
     }
+
+    get width(){
+        return $(this).attr(HexAnchor.widthAttribute);
+    }
+
+    get height(){
+        return $(this).attr(HexAnchor.heightAttribute);
+    }
+    
+    set width(v){
+        return $(this).attr(HexAnchor.widthAttribute, v);
+    }
+
+    set height(v){
+        return $(this).attr(HexAnchor.heightAttribute, v);
+    }    
 
     connectedCallback() {
         super.connectedCallback();
@@ -47,6 +61,16 @@ class HexAnchor extends NidgetElement {
         if (mutationRecord.attributeName === "axial"){
             this.locate(mutationRecord.target);
         }
+        else if (mutationRecord.attributeName === "hexwidth"){
+            this.relocate();
+        }
+        else if (mutationRecord.attributeName === "hexheight"){
+            this.relocate();
+        }
+    }
+
+    relocate(){
+        $(this).find("hex-element").each((i, e)=>this.locate(e));
     }
 
     locate(hexElement) {

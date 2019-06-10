@@ -13,6 +13,19 @@
                 "src": {}
             }
         },
+        "number-token": {
+            "attributes": {
+                "number": {}
+            }
+        },
+        "resource-tile-element": {
+            "attributes": {
+                "number": {},
+                "hex-type": {},
+                "id": {},
+                "type": {}
+            }
+        },
         "nidget-element": {
             "attributes": {
                 "template": {},
@@ -45,6 +58,9 @@
         }
     },
     "attributes": {
+        "is": {
+            "context": "img"
+        },
         "hexWidth": {}
     }
 }

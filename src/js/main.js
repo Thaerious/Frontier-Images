@@ -2,9 +2,12 @@
 const $ = window.$ ? window.$ : require("jquery");
 const NidgetElement = require("@thaerious/nidget").NidgetElement;
 const ButtonNidget = require("@thaerious/nidget").NigetButton;
-const HexAnchor = require("./HexAnchor");
-const HexElement = require("./HexElement");
+
+require("./HexAnchor");
+require("./HexElement");
+require("./HexAnchor");
 require("./RadialHexCollection");
+require("./ResourceTileElement");
 
 window.Axial = require("./Axial");
 
@@ -13,7 +16,7 @@ window.addEventListener("load", ()=>{
     main.start();
 });
 
-class Main{
+class Main{ 
     async start(){
         $("#bRoad").click((event)=>{
             console.log("bRoad");
@@ -21,5 +24,7 @@ class Main{
         $("#bVillage").click((event)=>{
             console.log("bVillage");
         });
+        
+        let hexes = document.querySelectorAll("#mapAnchor hex-element");
     }    
 }

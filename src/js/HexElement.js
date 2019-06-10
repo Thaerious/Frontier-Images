@@ -7,15 +7,9 @@ class HexElement extends NidgetElement{
     constructor(x = 0, y = 0, z = 0){
         super();
         this._axial = new Axial(x, y, z);
-        this.img = document.createElement("img");
-        this.attachShadow({mode: 'open'}).appendChild(this.img);
     }
     
     connectedCallback(){
-        let src = this.getAttribute(HexElement.srcAttribute);        
-        if (src) this.img.setAttribute("src", src);
-        //this.attachShadow({mode: 'open'}).appendChild(this.img);
-                
         let axialAttr = this.getAttribute(HexElement.axialAttribute);
         if (axialAttr !== "" && axialAttr !== null){
             let axialArray = axialAttr.split(/[ ,]+/g);
@@ -24,14 +18,7 @@ class HexElement extends NidgetElement{
             let z = axialArray.length >= 3 ? parseFloat(axialArray[2]) : 0;
             this.axial = new Axial(x, y, z);
         }
-    }
-    
-    set src(src){
-        this.img.setAttribute("src", src);
-    }
-    
-    get src(){
-        return this.img.getAttribute("src");
+        super.connectedCallback();
     }
     
     set axial(ax){
@@ -41,15 +28,9 @@ class HexElement extends NidgetElement{
     
     get axial(){
         return this._axial;
-    }        
-    
-    size(width, height){
-        $(this).css("width", width);
-        $(this).css("height", height);
-    }
+    }    
 };
 
-HexElement.srcAttribute = "src";
 HexElement.axialAttribute = "axial";
 window.customElements.define('hex-element', HexElement);
 module.exports = HexElement;
