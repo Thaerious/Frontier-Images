@@ -7,7 +7,9 @@ require("./HexAnchor");
 require("./HexElement");
 require("./HexAnchor");
 require("./RadialHexCollection");
+require("./TileElement");
 require("./ResourceTileElement");
+require("./PortTileElement");
 
 window.Axial = require("./Axial");
 

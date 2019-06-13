@@ -2,25 +2,40 @@
 const $ = window.$ ? window.$ : require("jquery");
 const Nidget = require("@thaerious/nidget").Nidget;
 const HexElement = require("./HexElement");
+const HexImage = require("./HexImage");
 
 class TileElement extends HexElement{
     constructor(type){
         super();
-        if (type === null) this.tileType = TileElement.TileType.WATER;
-        else this.tileType = type;
+        this.hexImg = new HexImage();
     }
     
     connectedCallback(){
-        super.connectedCallback();
-        this.tile(this.tileType);
+        super.connectedCallback();               
+        $(this).append(this.hexImg);
     }
-        
     
-    tile(type){        
-        if (!type) return this.tileType;
-        this.tileType = type;
-        this.imgSrc(TileElement.imageDirectory + type + ".png");
+    static get observedAttributes() {
+        return [TileElement.typeAttribute];
+    }    
+    
+    attributeChangedCallback(name, oldValue, newValue) {
+        switch (name) {
+            case "hex-type":
+                this.hexImg.setAttribute(HexImage.typeAttribute, newValue);                
+                break;
+        }
     }
+    
+    get hexType() {
+        let hexType = $(this).attr(TileElement.typeAttribute);
+        if (!hexType) return undefined;        
+        return $(this).attr(TileElement.typeAttribute);
+    }
+
+    set hexType(string) {   
+        $(this).attr(TileElement.typeAttribute, string);
+    }    
 };
 
 /* tile types corrispond to image filename */
@@ -28,7 +43,7 @@ TileElement.TileType = {
     WATER    : "WATER",
     FIELD    : "FIELD",
     FOREST   : "FOREST",
-    HILL     :  "HILL",
+    HILL     : "HILL",
     MOUNTAIN : "MOUNTAIN",
     PASTURE  : "PASTURE",
     DESERT   : "DESERT",
@@ -40,7 +55,8 @@ TileElement.TileType = {
     PORT5    : "PORT5"    
 };
 
-TileElement.imageDirectory = "assets/images/";
+TileElement.imageDirectory = "assets/images/hex/";
+TileElement.typeAttribute = "hex-type";
 
 window.customElements.define('tile-element', TileElement);
 module.exports = TileElement;

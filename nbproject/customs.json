@@ -7,6 +7,11 @@
                 "state": {}
             }
         },
+        "tile-element": {
+            "attributes": {
+                "hex-type": {}
+            }
+        },
         "hex-element": {
             "attributes": {
                 "axial": {},
@@ -16,6 +21,12 @@
         "number-token": {
             "attributes": {
                 "number": {}
+            }
+        },
+        "port-tile-element": {
+            "attributes": {
+                "resource": {},
+                "facing": {}
             }
         },
         "resource-tile-element": {

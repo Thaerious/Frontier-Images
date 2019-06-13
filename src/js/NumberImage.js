@@ -1,13 +1,15 @@
 "use strict";
 const $ = window.$ ? window.$ : require("jquery");
+const NidgetHTMLImage = require("@thaerious/nidget").NidgetHTMLImage;
 
-class NumberImage extends HTMLImageElement{
-    constructor(number){
+class NumberImage extends NidgetHTMLImage{
+    constructor(){
         super();
     }
     
     connectedCallback(){
         this._updateRendering();
+        this.classList.add("centered-image");
     }
     
     static get observedAttributes() { return [NumberImage.numberAttribute]; }
@@ -29,11 +31,6 @@ class NumberImage extends HTMLImageElement{
     
         $(this).attr("src", filename);
     }
-    
-    scale(amount){
-        this.width = this.width * amount;
-        this.height = this.height * amount;
-    }    
 };
 
 NumberImage.imagePrefix = "number";

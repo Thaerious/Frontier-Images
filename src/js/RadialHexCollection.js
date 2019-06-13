@@ -58,14 +58,6 @@ class RadialHexCollection extends HexAnchor{
         }
     }
     
-    set src(src){
-        this.img.setAttribute("src", src);
-    }
-    
-    get src(){
-        return this.img.getAttribute("src");
-    }
-    
     size(width, height){
         $(this).attr("hexwidth", width);
         $(this).attr("hexheight", height);
