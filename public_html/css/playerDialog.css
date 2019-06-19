@@ -3,26 +3,6 @@
     box-sizing:content-box;
 }
 
-:host(*){
-    position: absolute;
-}
-
-:host([data-pid='1']){
-    left: 0px;
-}
-
-:host([data-pid='2']){
-    left: 300px;
-}
-
-:host([data-pid='3']){
-    left: 600px;
-}
-
-:host([data-pid='4']){
-    left: 900px;
-}
-
 :host([data-pid='1']) .name{
     -webkit-text-fill-color: red;
 }
@@ -42,10 +22,9 @@
 .playerDialog{
     position: absolute;
     font-family: arial;
-    font-size: 39px;
-    height: 250px;
-    width: 250px;
-    
+    font-size: 35px;
+    height: 100%;
+    width: 100%;    
 }
 
 .background{
@@ -54,12 +33,14 @@
 }    
 
 .name{
-    top: 7%;
+    box-sizing:content-box;
+    top: 5%;
     height: 17%;
     vertical-align: middle;
     font-weight: bold;
-    text-align: center;   
+    /*text-align: center;*/   
     width: 100%;
+    font-size: 31.84px;
     -webkit-text-stroke: 2px black;  
 }
 

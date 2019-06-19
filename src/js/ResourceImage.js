@@ -10,6 +10,7 @@ class ResourceImage extends NidgetHTMLImage{
     connectedCallback(){
         this._updateRendering();
         this.classList.add("centered-image");
+        this.setAttribute("is", "resource-image");
     }
     
     static get observedAttributes() { return [ResourceImage.resourceAttribute]; }

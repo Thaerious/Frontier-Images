@@ -5,8 +5,9 @@
     flex-direction: column;
     font-family: arial;
     font-size: 30px;
-    /*width: 40px;*/
-    /*height: 120px;*/
+    right: 5px;
+    bottom: 5px;
+    transform: translateY(-120%);
 
     .background{
         position: relative;

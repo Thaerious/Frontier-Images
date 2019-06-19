@@ -1,21 +1,27 @@
 #store{  
-    position: fixed;
+    position: absolute;
     display: flex;
     flex-direction: column;
+    width: 314px;
+    height: 226px;
+    right: 15px;
+    bottom: 15px;
     
     /* right-bottom affixes the div so I used left-top-transform instead */
-    left: calc(100% - 5px);
-    top: calc(100% - 5px);
-    transform: translate(-100%, -100%);
+    /*left: calc(100% - 5px);*/
+    /*top: calc(100% - 5px);*/
+    /*transform: translate(-100%, -100%);*/
 
     .header{
         position: relative;
-        height: calc(50 / 226 * 100%);       
+        height: calc(50 / 226 * 100%); 
+        width: 100%;
     }
     
     .background{
         position: relative;
-        height: calc(176 / 226 * 100%);       
+        height: calc(176 / 226 * 100%);     
+        width: 100%;
     }
     
     .inner{

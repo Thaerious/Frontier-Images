@@ -12,19 +12,52 @@ class HexAnchor extends NidgetElement {
 
         /* see https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver */
         let config = {
-            attributes: true, childList: true, subtree: true
+            attributes: true, 
+            childList: true, 
+            subtree: true, 
+            attributeFilter: [HexAnchor.axialAttribute, HexAnchor.heightAttribute, HexAnchor.widthAttribute]
         };
-        this.observer = new MutationObserver((mr, obs) => this.onMutation(mr, obs));
+        this.observer = new MutationObserver((mutationRecord, obs) => this.onMutation(mutationRecord, obs));
         this.observer.observe(this, config);
     }
 
-    static get observedAttributes() {
-        return [HexAnchor.axialAttribute, HexAnchor.widthAttribute, HexAnchor.heightAttribute];
+    onMutation(mutationRecords, observer) {
+        for (let mutationRecord of mutationRecords) {
+            this._onMutation(mutationRecord);
+        }        
+    }
+
+    _onMutation(mutationRecord) {
+        if (mutationRecord.type === "childList"){
+            this.childListAdded(mutationRecord.addedNodes);
+            this.childListRemoved(mutationRecord.removedNodes);
+        }
+        
+        if (mutationRecord.type === "attributes"){            
+            this.attributeChangedCallback(mutationRecord.attributeName, mutationRecord.target);
+        }
+    }
+
+    childListAdded(added){
+        for (let i = 0; i < added.length; i++) {
+            if (added[i] instanceof HexElement) {
+                this.onAdd(added[i]);
+            }
+        }        
+    }
+    
+    childListRemoved(removed){
+        for (let i = 0; i < removed.length; i++) {
+            if (removed[i] instanceof HexElement) {
+                this.onRemove(removed[i]);
+            }
+        }        
     }    
 
-    attributeChangedCallback(name, oldValue, newValue) {
+    attributeChangedCallback(name, target) {
         switch (name) {
             case HexAnchor.axialAttribute:
+                this.locate(target);
             break;
             case HexAnchor.widthAttribute:
             case HexAnchor.heightAttribute:
@@ -57,40 +90,19 @@ class HexAnchor extends NidgetElement {
         this.hexHeight = this.getAttribute(HexAnchor.heightAttribute);
     }
 
-    onMutation(mutationRecords, observer) {
-        for (let mutationRecord of mutationRecords) {
-            this._onMutation(mutationRecord);
-        }
-    }
-
     onAdd(hexElement){
         this.locate(hexElement);
     }
-
-    _onMutation(mutationRecord) {
-        let added = mutationRecord.addedNodes;
-        for (let i = 0; i < added.length; i++) {
-            if (added[i] instanceof HexElement) {
-                this.onAdd(added[i]);
-            }
-        }
-        
-        if (mutationRecord.attributeName === "axial"){
-            this.locate(mutationRecord.target);
-        }
-        else if (mutationRecord.attributeName === "hexwidth"){
-            this.relocate();
-        }
-        else if (mutationRecord.attributeName === "hexheight"){
-            this.relocate();
-        }
+    
+    onRemove(hexElement){
+        this.map.delete(hexElement);
     }
 
-    relocate(){
+    relocate(){        
         for (let e of this.children) this.locate(e);
     }
 
-    locate(hexElement) {
+    locate(hexElement) {        
         if (hexElement instanceof HexElement === false) {
             throw `Only HexElement elements can be located on HexAnchor elements, found: ${hexElement.constructor.name}`;
         }
@@ -175,16 +187,17 @@ class HexAnchor extends NidgetElement {
         return this.map.get(hexElement);
     }
     
-    scale(amount){
-        this.hexHeight = this.hexHeight * amount;
-        this.hexWidth = this.hexWidth * amount;
-        super.scale(amount);
+    scale(w, h){
+        if (!h) h = w;
+        this.hexHeight = this.hexHeight * h;
+        this.hexWidth = this.hexWidth * w;
+        super.scale(w, h);
     }
 }
 
 HexAnchor.axialAttribute = "axial";
-HexAnchor.widthAttribute = "hexWidth";
-HexAnchor.heightAttribute = "hexHeight";
+HexAnchor.widthAttribute = "hex-width";
+HexAnchor.heightAttribute = "hex-height";
 
 const NidgetProto = window.customElements.define('hex-anchor', HexAnchor);
 module.exports = HexAnchor;

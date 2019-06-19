@@ -1,5 +1,15 @@
-/*@import './playerDialog';*/
 @import './bank';
 @import './store';
+/*@import './playerDialog';*/
 
 @import '../../node_modules/@thaerious/nidget/styles/nidget.scss';
+
+#main{
+  position: absolute;
+  background-color: blue; 
+  width: 95%;
+  height: 95%;
+  top: 2.5%;
+  left: 2.5%;
+  max-width: 1200px;
+}

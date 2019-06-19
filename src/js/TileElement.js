@@ -13,13 +13,16 @@ class TileElement extends HexElement{
     connectedCallback(){
         super.connectedCallback();               
         $(this).append(this.hexImg);
+        $(this).css("box-sizing: content-box");
+        $(this.hexImg).css("box-sizing: content-box");
     }
     
     static get observedAttributes() {
-        return [TileElement.typeAttribute];
+        return [TileElement.typeAttribute].concat(super.observedAttributes);
     }    
     
     attributeChangedCallback(name, oldValue, newValue) {
+        super.attributeChangedCallback(name, oldValue, newValue);
         switch (name) {
             case "hex-type":
                 this.hexImg.setAttribute(HexImage.typeAttribute, newValue);                

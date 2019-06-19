@@ -1,10 +1,9 @@
 {
     "elements": {
-        "nidget-button-state": {
+        "image": {
             "attributes": {
-                "image-src": {},
                 "src": {},
-                "state": {}
+                "class": {}
             }
         },
         "tile-element": {
@@ -37,6 +36,19 @@
                 "type": {}
             }
         },
+        "div": {
+            "attributes": {
+                "id": {},
+                "class": {}
+            }
+        },
+        "nidget-button-state": {
+            "attributes": {
+                "image-src": {},
+                "src": {},
+                "state": {}
+            }
+        },
         "nidget-element": {
             "attributes": {
                 "template": {},
@@ -57,6 +69,7 @@
                 "size": {},
                 "src": {},
                 "id": {},
+                "hexWidth": {},
                 "hexHeight": {}
             }
         },
@@ -66,12 +79,17 @@
                 "id": {},
                 "class": {}
             }
+        },
+        "nidget-text": {
+            "attributes": {
+                "id": {},
+                "class": {}
+            }
         }
     },
     "attributes": {
         "is": {
             "context": "img"
-        },
-        "hexWidth": {}
+        }
     }
 }
