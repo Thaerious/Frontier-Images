@@ -1,0 +1,57 @@
+#mapBoundingBox{
+    position: absolute;
+   
+}
+
+body.portrait{
+    #mapBoundingBox{
+        top: 20vh;    
+        width: 95%;
+        height: 70vh;
+        left: 2.5%;
+    }
+}
+
+body.landscape{
+    #mapBoundingBox{
+        left: 50%;
+        transform: translate(-50%, 0%);
+        width: calc(0.9066 * 90vh);
+        height: 90vh;
+        top: 5vh;
+    }    
+}
+
+#mapAnchor{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+
+
+#mapAnchor > *{
+    box-sizing: content-box;
+    height: 104px;
+    width: 120px;
+}
+
+#mapAnchor > * > [hex-type]{
+    position: absolute;
+    box-sizing: content-box;
+    height: 100%;
+    width: 100%;
+}
+
+.centered-image{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+}
+
+[is='resource-image'], [is='number-image']{
+    width: calc(34 / 120 * 100%);
+    height: calc(34 / 104 * 100%);
+    z-index: 1;
+}

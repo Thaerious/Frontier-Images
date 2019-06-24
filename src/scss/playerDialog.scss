@@ -1,58 +1,37 @@
-
-.playerDialog{
+#playerDialogContainer{
+    box-sizing:content-box;
     position: absolute;
-    font-family: arial;
-    font-size: 39px;
-    height: 250px;
-    width: 250px;
-    
-    .background{
-        height: 100%;
-        width: 100%;
-    }
-    
-    *{        
-        position: absolute;
-    }
-
-    .name{
-        top: 7%;
-        height: 17%;
-        vertical-align: middle;
-        font-weight: bold;
-        text-align: center;   
-        width: 100%;
-        -webkit-text-fill-color: red;
-        -webkit-text-stroke: 2px black;  
-    }
-
-    .number{    
-        font-size: 0.75em;
-        vertical-align: middle;
-        height: 13.4%;
-        width: 6.5%;
-        /*border: 1px solid black;*/
-        
-        &.left{
-            left: 29%;
-            &.top{
-                top: 35%;
-            }
-            &.middle{
-                top: 55%;
-            }
-            &.bottom{
-                top: 74%;
-            }            
-        }
-        &.right{
-            left: 62%;
-            &.top{
-                top: 45%;
-            }
-            &.bottom{
-                top: 64%;
-            }                    
-        }        
-    }
 }
+
+body.portrait{
+    #playerDialogContainer{
+        top: 0px;
+        height: 20vh;
+        border: 2px solid green;
+        width: 95%;
+        left: 2.5%;        
+    }
+    .outerPlayerDialog{
+        position: absolute;
+        box-sizing:content-box;
+    }    
+}
+
+body.landscape{
+    #playerDialogContainer{
+        flex-direction: column;          
+        left: 10px;
+        top: 50%;
+        transform: translate(0%, -50%);
+        maxwidth: 162px;        
+        height: 80vh;
+        width: 20vh;
+    }    
+    .outerPlayerDialog{
+        position: relative;
+        box-sizing:content-box;
+        height: 25%;
+        width: 100%;    
+    }    
+}
+

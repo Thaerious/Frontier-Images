@@ -34,14 +34,14 @@
 
 .name{
     box-sizing:content-box;
-    top: 5%;
+    top: 7%;
     height: 17%;
     vertical-align: middle;
     font-weight: bold;
-    /*text-align: center;*/   
+    text-align: center;   
     width: 100%;
     font-size: 31.84px;
-    -webkit-text-stroke: 2px black;  
+    -webkit-text-stroke: 1.0px black;  
 }
 
 :host[data-pid='1']{

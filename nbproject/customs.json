@@ -28,6 +28,11 @@
                 "facing": {}
             }
         },
+        "nidget-container": {
+            "attributes": {
+                "id": {}
+            }
+        },
         "resource-tile-element": {
             "attributes": {
                 "number": {},

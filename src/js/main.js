@@ -21,32 +21,15 @@ window.addEventListener("load", () => {
 const MAP_RATIO = 1.103;
 const HEX_RATIO = 1.15384615384615;
 function resizeMap(nidg, prev) {
-    nidg.height = nidg.width * MAP_RATIO;
-    resizeMapVertDominant(nidg, prev);
-}
-
-function resizeMapVertDominant(nidg, prev) {
-    let hexHeight = nidg.height / 7;
-    let hexWidth = hexHeight * HEX_RATIO;
-    window.e = nidg;
-
-    hexHeight = Math.trunc(hexHeight * 1000, 3) / 1000;
-    hexWidth = Math.trunc(hexWidth * 1000, 3) / 1000;
-
-    let mapAnchor = document.querySelector("#mapAnchor");
-    mapAnchor.hexWidth = hexWidth;
-    mapAnchor.hexHeight = hexHeight;
-
-    for (let e of mapAnchor.children) {
-        if (!e instanceof HexElement) continue;
-        e.width = hexWidth;
-        e.height = hexHeight;
+    let targetHeight = nidg.height;
+    if (nidg.width * MAP_RATIO < nidg.height){
+        targetHeight = nidg.width * MAP_RATIO;
     }
+    resizeMapVertDominant(targetHeight);
 }
 
-function resizeMapHorzDominant(nidg, prev) {
-    console.log("horz");
-    let hexHeight = nidg.height / 7;
+function resizeMapVertDominant(targetHeight) {
+    let hexHeight = targetHeight / 7;
     let hexWidth = hexHeight * HEX_RATIO;
 
     hexHeight = Math.trunc(hexHeight * 1000, 3) / 1000;
@@ -61,26 +44,69 @@ function resizeMapHorzDominant(nidg, prev) {
         e.width = hexWidth;
         e.height = hexHeight;
     }
+    
+    $("#mapAnchor").css("top", `${targetHeight / 2}px`);
+}
+
+function resizePlayerDialog(nidg, prev){
+    let outers = $(".outerPlayerDialog");
+    
+    let targetHeight = nidg.height;
+    if (nidg.width / 4 < nidg.height){
+        targetHeight = nidg.width / 4;
+    }
+    
+    $(".outerPlayerDialog").css("width", `${targetHeight}px`);
+    $(".outerPlayerDialog").css("height", `${targetHeight}px`);
+    
+    $(".outerPlayerDialog[data-pid='1'").css("left", `${nidg.width / 4 * 0}px`);
+    $(".outerPlayerDialog[data-pid='2'").css("left", `${nidg.width / 4 * 1}px`);
+    $(".outerPlayerDialog[data-pid='3'").css("left", `${nidg.width / 4 * 2}px`);
+    $(".outerPlayerDialog[data-pid='4'").css("left", `${nidg.width / 4 * 3}px`);
 }
 
 function checkWindowDims() {
-    if (window.innerHeight > window.innerWidth) {
+    if (window.innerHeight > window.innerWidth && !$("body").hasClass("portrait")) {
+        console.log("portrait");
         $("body").removeClass("landscape");
         $("body").addClass("portrait");
-    } else {
+    } else if (window.innerHeight < window.innerWidth && !$("body").hasClass("landscape")){
+        console.log("landscape");
         $("body").removeClass("portrait");
         $("body").addClass("landscape");
     }
 }
 
+//class Main {
+//    async start() {
+//        console.log("start");
+//        let q = document.querySelector("#mapBoundingBox");
+//        q.onResize = resizeMap.bind(q);
+//        
+//        q = document.querySelector("#playerDialogContainer");
+//        q.onResize = resizePlayerDialog.bind(q);
+//
+//        checkWindowDims();
+//        $(window).resize(()=>checkWindowDims());
+//        
+//    }
+//}
+
 class Main {
     async start() {
-        console.log("start");
-        let q = document.querySelector("#mapBoundingBox");
-        q.onResize = resizeMap.bind(q);
+        $(window).resize(() => this.checkWindowDims());
+        this.checkWindowDims();
+    }
 
-        checkWindowDims();
-        $(window).resize(()=>checkWindowDims());
+    checkWindowDims() {
+        if (window.innerHeight > window.innerWidth && !$("body").hasClass("portrait")) {
+            console.log("portrait");
+            $("body").removeClass("landscape");
+            $("body").addClass("portrait");
+        } else if (window.innerHeight < window.innerWidth && !$("body").hasClass("landscape")) {
+            console.log("landscape");
+            $("body").removeClass("portrait");
+            $("body").addClass("landscape");
+        }
     }
 }
-

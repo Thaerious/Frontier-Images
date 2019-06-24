@@ -1,15 +1,77 @@
-@import './bank';
-@import './store';
+/*@import './bank';*/
+/*@import './store';*/
 /*@import './playerDialog';*/
-
+/*@import './map';*/
 @import '../../node_modules/@thaerious/nidget/styles/nidget.scss';
 
-#main{
-  position: absolute;
-  background-color: blue; 
-  width: 95%;
-  height: 95%;
-  top: 2.5%;
-  left: 2.5%;
-  max-width: 1200px;
+
+#playerDialogContainer{
+    box-sizing:content-box;
+    position: relative;
+    border: 3px solid red;
+    background-color: rgba(255, 0, 0, 0.4);
+}
+
+.outerPlayerDialog{
+    border: 1px solid blue;
+    background-color: rgba(255, 0, 0, 0.4);
+}
+
+#infoContainer{
+    box-sizing:content-box;
+    position: relative;    
+    border: 3px solid blue;
+    background-color: rgba(0, 0, 1, 0.5);
+}
+
+#mapBoundingBox{
+    box-sizing:content-box;
+    position: relative;
+    border: 3px solid green;
+    background-color: rgba(0, 255, 0, 0.5);
+}
+
+body.portrait{
+    *{
+        display: block;
+    }
+    
+    #mapBoundingBox{
+        width: 95%;
+        height: 70vh;
+        left: 2.5%;
+    }
+    #playerDialogContainer{
+        height: 20vh;
+        width: 95%;
+        left: 2.5%;        
+    }
+    .outerPlayerDialog{
+        position: absolute;
+        box-sizing:content-box;
+    }      
+}
+
+body.landscape{
+    *{
+        display: inline-block;
+    }
+        
+    #mapBoundingBox{
+        width: 75vw;
+        height: 90vh;
+        top: 5vh;
+    }    
+    #playerDialogContainer{
+        /*flex-direction: column;*/          
+        top: 5vh;
+        max-width: 162px;        
+        height: 90vh;
+        width: 20vw;
+    }    
+    .outerPlayerDialog{
+        position: relative;        
+        /*height: 25%;*/
+        /*width: 100%;*/    
+    }        
 }
