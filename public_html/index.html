@@ -18,7 +18,7 @@ and open the template in the editor.
         <template id="playerDialog">
             <nidget-element class="playerDialog">
                 <link href="css/playerDialog.css" rel="stylesheet" type="text/css"/>
-                <image class="background" src="assets/images/new/player-dialog.png"/>    
+                <img class="background" src="assets/images/new/player-dialog.png"/>    
                 <nidget-text id="name" class="name" fit="true">NAME</nidget-text>
                 <nidget-text id="vp" class="number left top" fit="true">0</nidget-text>
                 <nidget-text id="soldier" class="number left middle" fit="true">0</nidget-text>
@@ -29,97 +29,106 @@ and open the template in the editor.
         </template>
 
         <!--<div id="main">-->
-            <nidget-container layout="row" id="playerDialogContainer">
-                <nidget-element class="outerPlayerDialog" template="playerDialog" data-pid="1" interfaces=""></nidget-element>
-                <nidget-element class="outerPlayerDialog" template="playerDialog" data-pid="2" interfaces=""></nidget-element>
-                <nidget-element class="outerPlayerDialog" template="playerDialog" data-pid="3" interfaces=""></nidget-element>
-                <nidget-element class="outerPlayerDialog" template="playerDialog" data-pid="4" interfaces=""></nidget-element>
+
+        <nidget-container layout="row" id="playerDialogContainer">
+            <nidget-container class="outerPlayerDialog" layout="square">
+                <nidget-element template="playerDialog" data-pid="1" interfaces=""></nidget-element>
             </nidget-container>
+            <nidget-container class="outerPlayerDialog" layout="square">
+                <nidget-element template="playerDialog" data-pid="2" interfaces=""></nidget-element>
+            </nidget-container>
+            <nidget-container class="outerPlayerDialog" layout="square">
+                <nidget-element template="playerDialog" data-pid="3" interfaces=""></nidget-element>
+            </nidget-container>
+            <nidget-container class="outerPlayerDialog" layout="square">
+                <nidget-element template="playerDialog" data-pid="4" interfaces=""></nidget-element>
+            </nidget-container>
+        </nidget-container>
 
-<!--            <nidget-element class="bank">
-                <image class="background" src="assets/images/new/bank.png"/>  
-                <div class="text-container">
-                    <div data-cat="ore" class="resource one"><div class="text">0</div></div>
-                    <div data-cat="wheat" class="resource two"><div class="text">0</div></div>
-                    <div data-cat="wood" class="resource three"><div class="text">0</div></div>
-                    <div data-cat="wool" class="resource four"><div class="text">0</div></div>
-                    <div data-cat="brick" class="resource five"><div class="text">0</div></div>
-                </div>
-            </nidget-element>   -->
+    <!--            <nidget-element class="bank">
+                    <image class="background" src="assets/images/new/bank.png"/>  
+                    <div class="text-container">
+                        <div data-cat="ore" class="resource one"><div class="text">0</div></div>
+                        <div data-cat="wheat" class="resource two"><div class="text">0</div></div>
+                        <div data-cat="wood" class="resource three"><div class="text">0</div></div>
+                        <div data-cat="wool" class="resource four"><div class="text">0</div></div>
+                        <div data-cat="brick" class="resource five"><div class="text">0</div></div>
+                    </div>
+                </nidget-element>   -->
 
-<!--            <nidget-element id="mapBoundingBox" interfaces="resize">
-                <radial-hex-collection id="mapAnchor" hex-width="120" hex-height="104">
-                    <tile-element hex-type="desert"></tile-element>      
-                    <resource-tile-element hex-type="forest" number="2"></resource-tile-element>      
-                    <resource-tile-element hex-type="forest" number="3"></resource-tile-element>
-                    <resource-tile-element hex-type="forest" number="4"></resource-tile-element>
-                    <resource-tile-element hex-type="forest" number="5"></resource-tile-element>      
-                    <resource-tile-element hex-type="pasture" number="6"></resource-tile-element>
-                    <resource-tile-element hex-type="pasture" number="8"></resource-tile-element>
-                    <resource-tile-element hex-type="pasture" number="9"></resource-tile-element>
-                    <resource-tile-element hex-type="pasture" number="10"></resource-tile-element>
-                    <resource-tile-element hex-type="field" number="11"></resource-tile-element>
-                    <resource-tile-element hex-type="field" number="12"></resource-tile-element>
-                    <resource-tile-element hex-type="field" number="3"></resource-tile-element>
-                    <resource-tile-element hex-type="field" number="4"></resource-tile-element>
-                    <resource-tile-element hex-type="hill" number="5"></resource-tile-element>
-                    <resource-tile-element hex-type="hill" number="6"></resource-tile-element>
-                    <resource-tile-element hex-type="hill" number="8"></resource-tile-element>
-                    <resource-tile-element hex-type="mountain" number="9"></resource-tile-element>
-                    <resource-tile-element hex-type="mountain" number="10"></resource-tile-element>
-                    <resource-tile-element hex-type="mountain" number="11"></resource-tile-element>        
-                    <port-tile-element facing="S" resource="wheat"></port-tile-element>
-                    <tile-element hex-type="water"></tile-element>        
-                    <port-tile-element facing="SW" resource="three"></port-tile-element>
-                    <tile-element hex-type="water"></tile-element>        
-                    <port-tile-element facing="NW" resource="ore"></port-tile-element>
-                    <tile-element hex-type="water"></tile-element>        
-                    <port-tile-element facing="NW" resource="three"></port-tile-element>
-                    <tile-element hex-type="water"></tile-element>  
-                    <port-tile-element facing="N" resource="brick"></port-tile-element>
-                    <tile-element hex-type="water"></tile-element>        
-                    <port-tile-element facing="NE" resource="three"></port-tile-element>
-                    <tile-element hex-type="water"></tile-element>        
-                    <port-tile-element facing="NE" resource="wool"></port-tile-element>
-                    <tile-element hex-type="water"></tile-element>        
-                    <port-tile-element facing="SE" resource="wood"></port-tile-element>
-                    <tile-element hex-type="water"></tile-element> 
-                    <port-tile-element facing="S" resource="three"></port-tile-element>
-                    <tile-element hex-type="water"></tile-element>         
-                </radial-hex-collection>
-            </nidget-element>-->
+    <!--            <nidget-element id="mapBoundingBox" interfaces="resize">
+                    <radial-hex-collection id="mapAnchor" hex-width="120" hex-height="104">
+                        <tile-element hex-type="desert"></tile-element>      
+                        <resource-tile-element hex-type="forest" number="2"></resource-tile-element>      
+                        <resource-tile-element hex-type="forest" number="3"></resource-tile-element>
+                        <resource-tile-element hex-type="forest" number="4"></resource-tile-element>
+                        <resource-tile-element hex-type="forest" number="5"></resource-tile-element>      
+                        <resource-tile-element hex-type="pasture" number="6"></resource-tile-element>
+                        <resource-tile-element hex-type="pasture" number="8"></resource-tile-element>
+                        <resource-tile-element hex-type="pasture" number="9"></resource-tile-element>
+                        <resource-tile-element hex-type="pasture" number="10"></resource-tile-element>
+                        <resource-tile-element hex-type="field" number="11"></resource-tile-element>
+                        <resource-tile-element hex-type="field" number="12"></resource-tile-element>
+                        <resource-tile-element hex-type="field" number="3"></resource-tile-element>
+                        <resource-tile-element hex-type="field" number="4"></resource-tile-element>
+                        <resource-tile-element hex-type="hill" number="5"></resource-tile-element>
+                        <resource-tile-element hex-type="hill" number="6"></resource-tile-element>
+                        <resource-tile-element hex-type="hill" number="8"></resource-tile-element>
+                        <resource-tile-element hex-type="mountain" number="9"></resource-tile-element>
+                        <resource-tile-element hex-type="mountain" number="10"></resource-tile-element>
+                        <resource-tile-element hex-type="mountain" number="11"></resource-tile-element>        
+                        <port-tile-element facing="S" resource="wheat"></port-tile-element>
+                        <tile-element hex-type="water"></tile-element>        
+                        <port-tile-element facing="SW" resource="three"></port-tile-element>
+                        <tile-element hex-type="water"></tile-element>        
+                        <port-tile-element facing="NW" resource="ore"></port-tile-element>
+                        <tile-element hex-type="water"></tile-element>        
+                        <port-tile-element facing="NW" resource="three"></port-tile-element>
+                        <tile-element hex-type="water"></tile-element>  
+                        <port-tile-element facing="N" resource="brick"></port-tile-element>
+                        <tile-element hex-type="water"></tile-element>        
+                        <port-tile-element facing="NE" resource="three"></port-tile-element>
+                        <tile-element hex-type="water"></tile-element>        
+                        <port-tile-element facing="NE" resource="wool"></port-tile-element>
+                        <tile-element hex-type="water"></tile-element>        
+                        <port-tile-element facing="SE" resource="wood"></port-tile-element>
+                        <tile-element hex-type="water"></tile-element> 
+                        <port-tile-element facing="S" resource="three"></port-tile-element>
+                        <tile-element hex-type="water"></tile-element>         
+                    </radial-hex-collection>
+                </nidget-element>-->
 
-<!--            <nidget-element id="store" interfaces="movable">
-                <img class="header nidget-header" src="assets/images/new/store-header.png" alt=""/>
-                <img class="background" src="assets/images/new/store-background.png" alt=""/>
-                <div class="inner">
-                    <nidget-button id="bRoad">
-                        <nidget-button-state state="IDLE" image-src="assets/images/new/store-road-idle.png"></nidget-button-state>
-                        <nidget-button-state state="HOVER" image-src="assets/images/new/store-road-hover.png"></nidget-button-state>
-                        <nidget-button-state state="DISABLED" image-src="assets/images/new/store-road-disabled.png"></nidget-button-state>
-                        <nidget-button-state state="PRESS" image-src="assets/images/new/store-road-press.png"></nidget-button-state>
-                    </nidget-button>
-                    <nidget-button id="bVillage" disabled>
-                        <nidget-button-state state="IDLE" image-src="assets/images/new/store-village-idle.png"></nidget-button-state>
-                        <nidget-button-state state="HOVER" image-src="assets/images/new/store-village-hover.png"></nidget-button-state>
-                        <nidget-button-state state="DISABLED" image-src="assets/images/new/store-village-disabled.png"></nidget-button-state>
-                        <nidget-button-state state="PRESS" image-src="assets/images/new/store-village-press.png"></nidget-button-state>
-                    </nidget-button>
-                    <nidget-button id="bCity">
-                        <nidget-button-state state="IDLE" image-src="assets/images/new/store-city-idle.png"></nidget-button-state>
-                        <nidget-button-state state="HOVER" image-src="assets/images/new/store-city-hover.png"></nidget-button-state>
-                        <nidget-button-state state="DISABLED" image-src="assets/images/new/store-city-disabled.png"></nidget-button-state>
-                        <nidget-button-state state="PRESS" image-src="assets/images/new/store-city-press.png"></nidget-button-state>
-                    </nidget-button>
-                    <nidget-button id="bCard">
-                        <nidget-button-state state="IDLE" image-src="assets/images/new/store-card-idle.png"></nidget-button-state>
-                        <nidget-button-state state="HOVER" image-src="assets/images/new/store-card-hover.png"></nidget-button-state>
-                        <nidget-button-state state="DISABLED" image-src="assets/images/new/store-card-disabled.png"></nidget-button-state>
-                        <nidget-button-state state="PRESS" image-src="assets/images/new/store-card-press.png"></nidget-button-state>
-                    </nidget-button>
-                </div>
-            </nidget-element>   -->
-        <!--</div>-->
+    <!--            <nidget-element id="store" interfaces="movable">
+                    <img class="header nidget-header" src="assets/images/new/store-header.png" alt=""/>
+                    <img class="background" src="assets/images/new/store-background.png" alt=""/>
+                    <div class="inner">
+                        <nidget-button id="bRoad">
+                            <nidget-button-state state="IDLE" image-src="assets/images/new/store-road-idle.png"></nidget-button-state>
+                            <nidget-button-state state="HOVER" image-src="assets/images/new/store-road-hover.png"></nidget-button-state>
+                            <nidget-button-state state="DISABLED" image-src="assets/images/new/store-road-disabled.png"></nidget-button-state>
+                            <nidget-button-state state="PRESS" image-src="assets/images/new/store-road-press.png"></nidget-button-state>
+                        </nidget-button>
+                        <nidget-button id="bVillage" disabled>
+                            <nidget-button-state state="IDLE" image-src="assets/images/new/store-village-idle.png"></nidget-button-state>
+                            <nidget-button-state state="HOVER" image-src="assets/images/new/store-village-hover.png"></nidget-button-state>
+                            <nidget-button-state state="DISABLED" image-src="assets/images/new/store-village-disabled.png"></nidget-button-state>
+                            <nidget-button-state state="PRESS" image-src="assets/images/new/store-village-press.png"></nidget-button-state>
+                        </nidget-button>
+                        <nidget-button id="bCity">
+                            <nidget-button-state state="IDLE" image-src="assets/images/new/store-city-idle.png"></nidget-button-state>
+                            <nidget-button-state state="HOVER" image-src="assets/images/new/store-city-hover.png"></nidget-button-state>
+                            <nidget-button-state state="DISABLED" image-src="assets/images/new/store-city-disabled.png"></nidget-button-state>
+                            <nidget-button-state state="PRESS" image-src="assets/images/new/store-city-press.png"></nidget-button-state>
+                        </nidget-button>
+                        <nidget-button id="bCard">
+                            <nidget-button-state state="IDLE" image-src="assets/images/new/store-card-idle.png"></nidget-button-state>
+                            <nidget-button-state state="HOVER" image-src="assets/images/new/store-card-hover.png"></nidget-button-state>
+                            <nidget-button-state state="DISABLED" image-src="assets/images/new/store-card-disabled.png"></nidget-button-state>
+                            <nidget-button-state state="PRESS" image-src="assets/images/new/store-card-press.png"></nidget-button-state>
+                        </nidget-button>
+                    </div>
+                </nidget-element>   -->
+    <!--</div>-->
 
-    </body>
+</body>
 </html>

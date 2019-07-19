@@ -19,6 +19,11 @@ nidget-button-state img {
   top: 0px;
 }
 
+.nidget-container-component {
+  position: absolute;
+  box-sizing: border-box;
+}
+
 #playerDialogContainer {
   box-sizing: content-box;
   position: relative;
@@ -46,7 +51,7 @@ nidget-button-state img {
 }
 
 body.portrait * {
-  display: block;
+  display: inline-block;
 }
 body.portrait #mapBoundingBox {
   width: 95%;
@@ -58,10 +63,6 @@ body.portrait #playerDialogContainer {
   width: 95%;
   left: 2.5%;
 }
-body.portrait .outerPlayerDialog {
-  position: absolute;
-  box-sizing: content-box;
-}
 
 body.landscape * {
   display: inline-block;
@@ -72,16 +73,10 @@ body.landscape #mapBoundingBox {
   top: 5vh;
 }
 body.landscape #playerDialogContainer {
-  /*flex-direction: column;*/
   top: 5vh;
   max-width: 162px;
   height: 90vh;
   width: 20vw;
-}
-body.landscape .outerPlayerDialog {
-  position: relative;
-  /*height: 25%;*/
-  /*width: 100%;*/
 }
 
 /*# sourceMappingURL=main.css.map */

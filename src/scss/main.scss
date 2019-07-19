@@ -4,7 +4,6 @@
 /*@import './map';*/
 @import '../../node_modules/@thaerious/nidget/styles/nidget.scss';
 
-
 #playerDialogContainer{
     box-sizing:content-box;
     position: relative;
@@ -33,7 +32,7 @@
 
 body.portrait{
     *{
-        display: block;
+        display: inline-block;
     }
     
     #mapBoundingBox{
@@ -46,10 +45,6 @@ body.portrait{
         width: 95%;
         left: 2.5%;        
     }
-    .outerPlayerDialog{
-        position: absolute;
-        box-sizing:content-box;
-    }      
 }
 
 body.landscape{
@@ -63,15 +58,9 @@ body.landscape{
         top: 5vh;
     }    
     #playerDialogContainer{
-        /*flex-direction: column;*/          
         top: 5vh;
         max-width: 162px;        
         height: 90vh;
         width: 20vw;
     }    
-    .outerPlayerDialog{
-        position: relative;        
-        /*height: 25%;*/
-        /*width: 100%;*/    
-    }        
 }

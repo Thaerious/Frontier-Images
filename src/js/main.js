@@ -96,17 +96,20 @@ class Main {
     async start() {
         $(window).resize(() => this.checkWindowDims());
         this.checkWindowDims();
+        $("nidget-container").each((i,e)=>e.doLayout("manual"));
     }
 
     checkWindowDims() {
         if (window.innerHeight > window.innerWidth && !$("body").hasClass("portrait")) {
             console.log("portrait");
             $("body").removeClass("landscape");
-            $("body").addClass("portrait");
+            $("body").addClass("portrait");            
+            $("#playerDialogContainer").attr("layout", "row");
         } else if (window.innerHeight < window.innerWidth && !$("body").hasClass("landscape")) {
             console.log("landscape");
             $("body").removeClass("portrait");
             $("body").addClass("landscape");
+            $("#playerDialogContainer").attr("layout", "column");
         }
     }
 }
