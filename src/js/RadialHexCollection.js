@@ -3,6 +3,7 @@ const $ = window.$ ? window.$ : require("jquery");
 const NidgetElement = require("@thaerious/nidget").NidgetElement;
 const HexAnchor = require("./HexAnchor");
 const HexElement = require("./HexElement");
+const Axial = require("./Axial");
 
 class RadialHexCollection extends HexAnchor{
     constructor(){

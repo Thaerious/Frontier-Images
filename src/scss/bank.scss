@@ -1,39 +1,35 @@
 
-.bank{
-    position: fixed;
-    display: flex;
-    flex-direction: column;
+#bank{
+    position: absolute;
     font-family: arial;
-    font-size: 30px;
-    right: 5px;
-    bottom: 5px;
-    transform: translateY(-120%);
+    /*transform: translateY(-120%);*/
+    width: 15vh;
 
     .background{
         position: relative;
-        height: 100%;       
         width: 100%;
     }
     
-    .text-container{
+    [data-cat]{
+        height: 15%;
         position: absolute;
-        display: flex;
-        flex-direction: column;
-        left: 10px;
-        top: 10px;
-        width: 78px;
-        height: 174px;
-        font-weight: bolder;
+        left: 20%;
         
-        .resource{
-            position: relative;    
-            height: 20%;
-            
-            .text{
-               position: absolute;    
-               left: 12px;
-               top: 1px;
-            }
+        &[data-cat="ore"]{
+            top: 5.5%;
         }
+        &[data-cat="wheat"]{
+            top: 23%;
+        }
+        &[data-cat="wood"]{
+            top: 41%;
+        }
+        &[data-cat="wool"]{
+            top: 59%;
+        }
+        &[data-cat="brick"]{
+            top: 77%;
+        }
+        
     }
 }

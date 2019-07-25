@@ -1,0 +1,57 @@
+img{
+    position: relative;
+    width: 100%;
+}
+
+nidget-text{
+    box-sizing: border-box;
+    position: absolute;
+    padding: 0;    
+    margin: 0;
+
+    &.name{
+        top: 7%;
+        height: 17%;
+        vertical-align: middle;
+        font-weight: bold;
+        text-align: center;   
+        width: 100%;
+        font-size: 31.84px;
+        -webkit-text-stroke: 1.0px black;  
+    }    
+
+    &.number{    
+        font-size: 31.84px;
+        vertical-align: middle;
+        height: 13.4%;
+        width: 6.5%;
+
+        &.left{
+            left: 29%;
+        }
+
+        &.right{
+            left: 62%;
+        }
+
+        &.left.top{
+            top: 35%;
+        }
+
+        &.left.middle{
+            top: 55%;
+        }
+
+        &.left.bottom{
+            top: 74%;
+        }
+
+        &.right.top{
+            top: 45%;
+        }
+
+        &.right.bottom{
+            top: 64%;
+        }
+    }
+}

@@ -1,66 +1,43 @@
-/*@import './bank';*/
-/*@import './store';*/
-/*@import './playerDialog';*/
-/*@import './map';*/
-@import '../../node_modules/@thaerious/nidget/styles/nidget.scss';
+@import './bank';
+@import './store';
+@import '../../node_modules/@thaerious/nidget/styles/nidget';
+@import './playerDialogFragment';
+@import './map';
 
-#playerDialogContainer{
-    box-sizing:content-box;
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+}
+
+.player-dialog-inner{
     position: relative;
-    border: 3px solid red;
+    border: 1px solid green;
     background-color: rgba(255, 0, 0, 0.4);
+    /*left: 10px;*/
+    width: 20vh;
+    /*top: 50%;*/
+    /*transform: translateY(-50%);*/
 }
 
-.outerPlayerDialog{
-    border: 1px solid blue;
-    background-color: rgba(255, 0, 0, 0.4);
-}
-
-#infoContainer{
-    box-sizing:content-box;
-    position: relative;    
-    border: 3px solid blue;
-    background-color: rgba(0, 0, 1, 0.5);
-}
-
-#mapBoundingBox{
-    box-sizing:content-box;
+.playerDialog{   
     position: relative;
-    border: 3px solid green;
-    background-color: rgba(0, 255, 0, 0.5);
-}
-
-body.portrait{
-    *{
-        display: inline-block;
-    }
     
-    #mapBoundingBox{
-        width: 95%;
-        height: 70vh;
-        left: 2.5%;
+    &[data-pid='1']{
+        background-color: blue;
+        /*top: 0%;*/
     }
-    #playerDialogContainer{
-        height: 20vh;
-        width: 95%;
-        left: 2.5%;        
+    &[data-pid='2']{
+        background-color: red;
+        /*top: 25%;*/
     }
-}
-
-body.landscape{
-    *{
-        display: inline-block;
+    &[data-pid='3']{
+        background-color: green;
+        /*top: 50%;*/
     }
-        
-    #mapBoundingBox{
-        width: 75vw;
-        height: 90vh;
-        top: 5vh;
-    }    
-    #playerDialogContainer{
-        top: 5vh;
-        max-width: 162px;        
-        height: 90vh;
-        width: 20vw;
-    }    
+    &[data-pid='4']{
+        background-color: yellow;
+        /*top: 75%;*/
+    }
 }

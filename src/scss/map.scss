@@ -1,21 +1,12 @@
 #mapBoundingBox{
-    position: absolute;
-   
-}
-
-body.portrait{
-    #mapBoundingBox{
-        top: 20vh;    
-        width: 95%;
-        height: 70vh;
-        left: 2.5%;
-    }
+    position: relative; 
+    border: 1px solid black;
 }
 
 body.landscape{
     #mapBoundingBox{
-        left: 50%;
-        transform: translate(-50%, 0%);
+        left:  calc(20vh + 20px);
+        /*transform: translate(-50%, 0%);*/
         width: calc(0.9066 * 90vh);
         height: 90vh;
         top: 5vh;
@@ -28,8 +19,8 @@ body.landscape{
     top: 50%;
 }
 
-
 #mapAnchor > *{
+    position: absolute;
     box-sizing: content-box;
     height: 104px;
     width: 120px;
