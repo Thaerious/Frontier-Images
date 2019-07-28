@@ -1,82 +1,150 @@
-/*@import './bank';*/
-/*@import './store';*/
-/*@import './playerDialog';*/
-/*@import './map';*/
+#bank {
+  position: relative;
+  font-family: arial;
+  /*transform: translateY(-120%);*/
+  width: 15vh; }
+  #bank .background {
+    position: relative;
+    width: 100%; }
+  #bank [data-cat] {
+    height: 15%;
+    position: absolute;
+    left: 20%; }
+    #bank [data-cat][data-cat="ore"] {
+      top: 5.5%; }
+    #bank [data-cat][data-cat="wheat"] {
+      top: 23%; }
+    #bank [data-cat][data-cat="wood"] {
+      top: 41%; }
+    #bank [data-cat][data-cat="wool"] {
+      top: 59%; }
+    #bank [data-cat][data-cat="brick"] {
+      top: 77%; }
+
+#store {
+  position: relative;
+  flex-direction: column;
+  width: 30vh;
+  transform: translate(-100%, 72%); }
+  #store .header {
+    position: relative;
+    height: calc(50 / 226 * 100%);
+    width: 100%; }
+  #store .background {
+    position: relative;
+    height: calc(176 / 226 * 100%);
+    width: 100%; }
+  #store .inner {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    height: calc(160 / 226 * 100%);
+    width: calc(290 / 314 * 100%);
+    left: calc(12 / 314 * 100%);
+    top: calc(77 / 314 * 100%); }
+    #store .inner nidget-button {
+      position: relative;
+      box-sizing: border-box;
+      width: 100%;
+      height: 25%; }
+
 nidget-button-state {
   position: absolute;
   box-sizing: border-box;
   width: 100%;
   height: 100%;
   left: 0px;
-  top: 0px;
-}
-nidget-button-state img {
-  position: absolute;
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-  left: 0px;
-  top: 0px;
-}
+  top: 0px; }
+  nidget-button-state img {
+    position: absolute;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px; }
 
-.nidget-container-component {
-  position: absolute;
-  box-sizing: border-box;
-}
-
-#playerDialogContainer {
-  box-sizing: content-box;
-  position: relative;
-  border: 3px solid red;
-  background-color: rgba(255, 0, 0, 0.4);
-}
-
-.outerPlayerDialog {
-  border: 1px solid blue;
-  background-color: rgba(255, 0, 0, 0.4);
-}
-
-#infoContainer {
-  box-sizing: content-box;
-  position: relative;
-  border: 3px solid blue;
-  background-color: rgba(0, 0, 1, 0.5);
-}
-
+/*@import './playerDialogFragment';*/
 #mapBoundingBox {
-  box-sizing: content-box;
   position: relative;
-  border: 3px solid green;
-  background-color: rgba(0, 255, 0, 0.5);
-}
+  /*border: 1px solid black;*/ }
 
-body.portrait * {
-  display: inline-block;
-}
-body.portrait #mapBoundingBox {
-  width: 95%;
-  height: 70vh;
-  left: 2.5%;
-}
-body.portrait #playerDialogContainer {
-  height: 20vh;
-  width: 95%;
-  left: 2.5%;
-}
-
-body.landscape * {
-  display: inline-block;
-}
 body.landscape #mapBoundingBox {
-  width: 75vw;
-  height: 90vh;
-  top: 5vh;
-}
-body.landscape #playerDialogContainer {
-  top: 5vh;
-  max-width: 162px;
-  height: 90vh;
-  width: 20vw;
-}
+  width: calc(0.9066 * 90vh);
+  height: 80vh; }
+
+#mapAnchor {
+  position: absolute;
+  left: 50%;
+  top: 50%; }
+
+#mapAnchor > * {
+  position: absolute;
+  box-sizing: content-box;
+  height: 104px;
+  width: 120px; }
+
+#mapAnchor > * > [hex-type] {
+  position: absolute;
+  box-sizing: content-box;
+  height: 100%;
+  width: 100%; }
+
+.centered-image {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0; }
+
+[is='resource-image'], [is='number-image'] {
+  width: calc(34 / 120 * 100%);
+  height: calc(34 / 104 * 100%);
+  z-index: 1; }
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0; }
+
+body * {
+  display: inline-block;
+  vertical-align: top; }
+
+body {
+  background-color: pink;
+  height: 100vh;
+  min-width: 1400px;
+  overflow-y: hidden;
+  overflow-x: hidden; }
+
+.vert-center {
+  top: 50%;
+  transform: translateY(-60%); }
+
+#right-panel {
+  border: 1px solid black;
+  height: 100vh; }
+
+.player-dialog-inner {
+  position: relative;
+  border: 1px solid green;
+  background-color: rgba(255, 0, 0, 0.4);
+  width: 20vh; }
+
+.playerDialog {
+  position: relative; }
+  .playerDialog[data-pid='1'] {
+    background-color: blue;
+    /*top: 0%;*/ }
+  .playerDialog[data-pid='2'] {
+    background-color: red;
+    /*top: 25%;*/ }
+  .playerDialog[data-pid='3'] {
+    background-color: green;
+    /*top: 50%;*/ }
+  .playerDialog[data-pid='4'] {
+    background-color: yellow;
+    /*top: 75%;*/ }
 
 /*# sourceMappingURL=main.css.map */

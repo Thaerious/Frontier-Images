@@ -3,19 +3,29 @@ const $ = window.$ ? window.$ : require("jquery");
 const NidgetElement = require("@thaerious/nidget").NidgetElement;
 const HexElement = require("./HexElement");
 const Axial = require("./Axial");
+const AxialCollection = require("./utility/AxialCollection");
+const ReversableMap = require("./utility/ReversableMap");
 
+/**
+ * A HexAnchor is an element that has child elements with the axial attribute.
+ * It will position all child elements relative to it's self according to the
+ * value of the child axial.
+ * 
+ * An axial attribute is a comma or space delimated value with the name "axial".
+ * An axial has three integers {x, y, z} which determine the location of the 
+ * element in 2d space.
+ */
 class HexAnchor extends NidgetElement {
-
     constructor(element) {
         super(element);
-        this.map = new Map();
+        this.map = new ReversableMap();
 
         /* see https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver */
         let config = {
             attributes: true, 
             childList: true, 
             subtree: true, 
-            attributeFilter: [HexAnchor.axialAttribute, HexAnchor.heightAttribute, HexAnchor.widthAttribute]
+            attributeFilter: [HexAnchor.ratioAttribute, HexAnchor.axialAttribute, HexAnchor.heightAttribute, HexAnchor.widthAttribute]
         };
         this.observer = new MutationObserver((mutationRecord, obs) => this.onMutation(mutationRecord, obs));
         this.observer.observe(this, config);
@@ -24,7 +34,7 @@ class HexAnchor extends NidgetElement {
     onMutation(mutationRecords, observer) {
         for (let mutationRecord of mutationRecords) {
             this._onMutation(mutationRecord);
-        }        
+        }
     }
 
     _onMutation(mutationRecord) {
@@ -33,7 +43,7 @@ class HexAnchor extends NidgetElement {
             this.childListRemoved(mutationRecord.removedNodes);
         }
         
-        if (mutationRecord.type === "attributes"){            
+        if (mutationRecord.type === "attributes"){               
             this.attributeChangedCallback(mutationRecord.attributeName, mutationRecord.target);
         }
     }
@@ -56,6 +66,9 @@ class HexAnchor extends NidgetElement {
 
     attributeChangedCallback(name, target) {
         switch (name) {
+            case HexAnchor.ratioAttribute:
+                this.checkRatio(target);
+            break;
             case HexAnchor.axialAttribute:
                 this.locate(target);
             break;
@@ -92,19 +105,47 @@ class HexAnchor extends NidgetElement {
 
     onAdd(hexElement){
         this.locate(hexElement);
+        this.checkRatio(hexElement);
     }
     
     onRemove(hexElement){
         this.map.delete(hexElement);
     }
 
-    relocate(){        
+    relocate(){
+        console.log("relocate");
         for (let e of this.children) this.locate(e);
     }
 
-    locate(hexElement) {        
-        if (hexElement instanceof HexElement === false) {
-            throw `Only HexElement elements can be located on HexAnchor elements, found: ${hexElement.constructor.name}`;
+    /**
+     * Look for a space/comma/colon deliminated string that will bind this elements
+     * size to the current hex width or hex height.  The format is
+     * binding-dimension, width-ratio, height-ratio.  binding-dimension = {"hex-width", "hex-height"}.
+     * @param {type} hexElement
+     * @return {undefined}
+     */
+    checkRatio(hexElement){
+        if (!hexElement.hasAttribute(HexAnchor.ratioAttribute)) return;
+        let string = hexElement.getAttribute(HexAnchor.ratioAttribute);
+        let settings = string.split(/[ ,]+/g);
+        
+        let widthRatio = settings[1];
+        let heightRatio = settings[2] ? settings[2] : settings[1];
+        
+        console.log(this.hexWidth + ", " + this.hexWidth);
+        
+        if (settings[0] === "hex-width"){
+            hexElement.width = this.hexWidth * widthRatio;
+            hexElement.height = this.hexWidth * heightRatio;
+        }else{
+            hexElement.width = this.hexHeight * widthRatio;
+            hexElement.height = this.hexHeight * heightRatio;
+        }        
+    }
+
+    locate(hexElement) {  
+        if (hexElement.axial === undefined){
+            throw `Only elements with axial attributes can be located on HexAnchor elements, found: ${hexElement.constructor.name}`;
         }
 
         $(hexElement).css("position", "absolute");
@@ -113,11 +154,11 @@ class HexAnchor extends NidgetElement {
         let ax = hexElement.axial;
         let loc = null;
 
-        if (Axial.isHex(ax)) {
+        if (ax.isHex()) {
             loc = this.hexLoc(ax);
-        } else if (Axial.isEdge(ax)) {
+        } else if (ax.isEdge()) {
             loc = this.edgeLoc(ax);
-        } else if (Axial.isCorner(ax)) {
+        } else if (ax.isCorner()) {
             loc = this.cornerLoc(ax);
         } else {
             throw "Invalid axial: " + ax;
@@ -187,17 +228,58 @@ class HexAnchor extends NidgetElement {
         return this.map.get(hexElement);
     }
     
+    getAxials(condition = ()=>{return true;}){
+        let rvalue = new AxialCollection;
+        for (let axial of this.map.values()){
+            if (condition(axial)) rvalue.add(axial);
+        }
+        return rvalue;
+    }
+    
+    /**
+     * Return an array of all elements associated with an axial map.  Will ignore
+     * axials for which there is no element.
+     * @param {type} AxialCollection
+     * @return {undefined}
+     */
+    getElements(axialCollection){
+        let rvalue = [];
+        for (let axial of axialCollection){
+            rvalue.push(this.map.getKey(axial));
+        }
+        return rvalue;
+    }
+    
+    /**
+     * Return an array of all elements that satisfy the filter condition.
+     * @param {type} AxialCollection
+     * @return {undefined}
+     */    
+    filter(condition = (ax, el)=>{return true;}){
+        let elements = [];
+        let axials = [];
+        for (let entry of this.map.entries()){
+            if (condition(entry[1], entry[0])){
+                elements.push(entry[0]);
+                axials.push(entry[1]);
+            }
+        }
+        return {elements: elements, axials: axials};
+    }
+            
     scale(w, h){
         if (!h) h = w;
+        super.scale(w, h);
         this.hexHeight = this.hexHeight * h;
         this.hexWidth = this.hexWidth * w;
-        super.scale(w, h);
+        
     }
 }
 
 HexAnchor.axialAttribute = "axial";
 HexAnchor.widthAttribute = "hex-width";
 HexAnchor.heightAttribute = "hex-height";
+HexAnchor.ratioAttribute = "hex-ratio";
 
 const NidgetProto = window.customElements.define('hex-anchor', HexAnchor);
 module.exports = HexAnchor;

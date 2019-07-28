@@ -16,7 +16,7 @@
   },
   "scripts": {
     "build-css": "sass ./src/scss/main.scss ./public_html/css/main.css",
-    "watch-css": "sass ./src/scss/main.scss public_html/css/main.css --watch",
+    "watch-css": "sass --watch ./src/scss/main.scss:public_html/css/main.css ./src/scss/playerDialogFragment.scss:public_html/css/playerDialogFragment.css",
     "build-js": "browserify src/js/main.js -o public_html/compiled.js -d",
     "watch-js": "watchify src/js/main.js -o public_html/compiled.js -dv",
     "build": "npm run build-js && npm run build-css"

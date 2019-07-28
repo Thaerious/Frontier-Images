@@ -10,8 +10,12 @@ const HexElement = require("./HexElement");
 require("./HexAnchor");
 require("./RadialHexCollection");
 require("./TileElement");
-require("./ResourceTileElement");
+const ResourceTileElement = require("./ResourceTileElement");
 require("./PortTileElement");
+require("./custom-elements/Bank");
+require("./custom-elements/Road");
+const CircleMarker = require("./custom-elements/CircleMarker");
+const Controller = require("./controller/Controller");
 
 window.addEventListener("load", () => {
     let main = new Main();
@@ -22,7 +26,19 @@ class Main {
     async start() {
         console.log("start");
         let q = document.querySelector("#mapBoundingBox");
-        q.onResize = resizeMap.bind(q);
+//        q.onResize = resizeMap.bind(q);
+        this.attachTargetAnchors();
+        new Controller();
+    }
+    
+    attachTargetAnchors(){
+        let mapAnchor = window.mapAnchor = document.querySelector("#mapAnchor");
+        let axials = mapAnchor.filter((ax, el)=>el instanceof ResourceTileElement).axials;
+        for (let ax of axials){
+            let img = new CircleMarker();
+            img.axial = ax;
+            mapAnchor.append(img);
+        }
     }
 }
 
@@ -33,10 +49,10 @@ function resizeMap(nidg, prev) {
     if (nidg.width * MAP_RATIO < nidg.height) {
         targetHeight = nidg.width * MAP_RATIO;
     }
-    resizeMapVertDominant(targetHeight);
+    resizeMapVertDominant(targetHeight, prev.height);
 }
 
-function resizeMapVertDominant(targetHeight) {
+function resizeMapVertDominant(targetHeight, prevHeight) {
     let hexHeight = targetHeight / 7;
     let hexWidth = hexHeight * HEX_RATIO;
 
@@ -48,76 +64,9 @@ function resizeMapVertDominant(targetHeight) {
     mapAnchor.hexHeight = hexHeight;
 
     for (let e of mapAnchor.children) {
+        e.scale(targetHeight / prevHeight);
         if (!e instanceof HexElement) continue;
-        e.width = hexWidth;
-        e.height = hexHeight;
     }
     
     $("#mapAnchor").css("top", `${targetHeight / 2}px`);
 }
-//
-//function resizePlayerDialog(nidg, prev){
-//    let outers = $(".outerPlayerDialog");
-//    
-//    let targetHeight = nidg.height;
-//    if (nidg.width / 4 < nidg.height){
-//        targetHeight = nidg.width / 4;
-//    }
-//    
-//    $(".outerPlayerDialog").css("width", `${targetHeight}px`);
-//    $(".outerPlayerDialog").css("height", `${targetHeight}px`);
-//    
-//    $(".outerPlayerDialog[data-pid='1'").css("left", `${nidg.width / 4 * 0}px`);
-//    $(".outerPlayerDialog[data-pid='2'").css("left", `${nidg.width / 4 * 1}px`);
-//    $(".outerPlayerDialog[data-pid='3'").css("left", `${nidg.width / 4 * 2}px`);
-//    $(".outerPlayerDialog[data-pid='4'").css("left", `${nidg.width / 4 * 3}px`);
-//}
-//
-//function checkWindowDims() {
-//    if (window.innerHeight > window.innerWidth && !$("body").hasClass("portrait")) {
-//        console.log("portrait");
-//        $("body").removeClass("landscape");
-//        $("body").addClass("portrait");
-//    } else if (window.innerHeight < window.innerWidth && !$("body").hasClass("landscape")){
-//        console.log("landscape");
-//        $("body").removeClass("portrait");
-//        $("body").addClass("landscape");
-//    }
-//}
-//
-////class Main {
-////    async start() {
-////        console.log("start");
-////        let q = document.querySelector("#mapBoundingBox");
-////        q.onResize = resizeMap.bind(q);
-////        
-////        q = document.querySelector("#playerDialogContainer");
-////        q.onResize = resizePlayerDialog.bind(q);
-////
-////        checkWindowDims();
-////        $(window).resize(()=>checkWindowDims());
-////        
-////    }
-////}
-//
-//class Main {
-//    async start() {
-//        $(window).resize(() => this.checkWindowDims());
-//        this.checkWindowDims();
-//        $("nidget-container").each((i,e)=>e.doLayout("manual"));
-//    }
-//
-//    checkWindowDims() {
-//        if (window.innerHeight > window.innerWidth && !$("body").hasClass("portrait")) {
-//            console.log("portrait");
-//            $("body").removeClass("landscape");
-//            $("body").addClass("portrait");            
-//            $("#playerDialogContainer").attr("layout", "row");
-//        } else if (window.innerHeight < window.innerWidth && !$("body").hasClass("landscape")) {
-//            console.log("landscape");
-//            $("body").removeClass("portrait");
-//            $("body").addClass("landscape");
-//            $("#playerDialogContainer").attr("layout", "column");
-//        }
-//    }
-//}

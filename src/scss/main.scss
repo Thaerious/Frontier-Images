@@ -1,24 +1,43 @@
 @import './bank';
 @import './store';
 @import '../../node_modules/@thaerious/nidget/styles/nidget';
-@import './playerDialogFragment';
+/*@import './playerDialogFragment';*/
 @import './map';
 
 *{
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+}
+
+body *{
     display: inline-block;
+    vertical-align: top;    
+}
+
+body{
+    background-color: pink;    
+    height: 100vh;
+    min-width: 1400px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.vert-center{
+    top: 50%;
+    transform: translateY(-60%);  
+}
+
+#right-panel{
+    border: 1px solid black;
+    height: 100vh;
 }
 
 .player-dialog-inner{
     position: relative;
     border: 1px solid green;
     background-color: rgba(255, 0, 0, 0.4);
-    /*left: 10px;*/
     width: 20vh;
-    /*top: 50%;*/
-    /*transform: translateY(-50%);*/
 }
 
 .playerDialog{   

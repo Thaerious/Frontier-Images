@@ -5,7 +5,7 @@ const HexElement = require("./HexElement");
 const HexImage = require("./HexImage");
 
 class TileElement extends HexElement{
-    constructor(type){
+    constructor(){
         super();
         this.hexImg = new HexImage();
     }
@@ -24,20 +24,18 @@ class TileElement extends HexElement{
     attributeChangedCallback(name, oldValue, newValue) {
         super.attributeChangedCallback(name, oldValue, newValue);
         switch (name) {
-            case "hex-type":
+            case TileElement.typeAttribute:
                 this.hexImg.setAttribute(HexImage.typeAttribute, newValue);                
                 break;
         }
     }
     
     get hexType() {
-        let hexType = $(this).attr(TileElement.typeAttribute);
-        if (!hexType) return undefined;        
-        return $(this).attr(TileElement.typeAttribute);
+        return this.getAttribute(TileElement.typeAttribute);
     }
 
     set hexType(string) {   
-        $(this).attr(TileElement.typeAttribute, string);
+        this.setAttribute(TileElement.typeAttribute, string);
     }    
 };
 

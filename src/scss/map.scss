@@ -1,16 +1,13 @@
 #mapBoundingBox{
     position: relative; 
-    border: 1px solid black;
+    /*border: 1px solid black;*/  
 }
 
 body.landscape{
     #mapBoundingBox{
-        left:  calc(20vh + 20px);
-        /*transform: translate(-50%, 0%);*/
         width: calc(0.9066 * 90vh);
-        height: 90vh;
-        top: 5vh;
-    }    
+        height: 80vh;
+    }
 }
 
 #mapAnchor{

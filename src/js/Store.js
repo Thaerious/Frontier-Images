@@ -1,8 +1,8 @@
 const $ = window.$ ? window.$ : require("jquery");
-const Nidget = require("@thaerious/nidget").Nidget;
+const NidgetElement = require("@thaerious/nidget").NidgetElement;
 const FileOperations = require("@thaerious/nidget").FileOperations;
 
-class Store extends Nidget{
+class Store extends NidgetElement{
     constructor(){
         super();
     }

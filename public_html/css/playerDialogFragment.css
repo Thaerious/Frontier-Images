@@ -1,92 +1,40 @@
-* {        
-    position: absolute;
-    box-sizing:content-box;
-}
+:host
+img {
+  position: relative;
+  width: 100%; }
 
-:host([data-pid='1']) .name{
-    -webkit-text-fill-color: red;
-}
-
-:host([data-pid='2']) .name{
-    -webkit-text-fill-color: blue;    
-}
-
-:host([data-pid='3']) .name{
-    -webkit-text-fill-color: green;
-}
-
-:host([data-pid='4']) .name{
-    -webkit-text-fill-color: white;    
-}
-
-.playerDialog{
-    position: absolute;
-    font-family: arial;
-    font-size: 35px;
-    height: 100%;
-    width: 100%;    
-    background-color: black;
-}
-
-.background{
-    height: 100%;
-    width: 100%;
-}    
-
-.name{
-    box-sizing:content-box;
+nidget-text {
+  box-sizing: border-box;
+  position: absolute;
+  padding: 0;
+  margin: 0; }
+  nidget-text.name {
     top: 7%;
     height: 17%;
     vertical-align: middle;
     font-weight: bold;
-    text-align: center;   
+    text-align: center;
     width: 100%;
     font-size: 31.84px;
-    -webkit-text-stroke: 1.0px black;  
-}
-
-:host[data-pid='1']{
-    -webkit-text-fill-color: blue;
-    border: 1px solid black;
-}
-
-:host[data-pid='2']{
-    -webkit-text-fill-color: red;
-    border: 1px solid black;
-    left: 200px;
-}
-
-.number{    
-    font-size: 0.75em;
+    -webkit-text-stroke: 1.0px black; }
+  nidget-text.number {
+    font-size: 31.84px;
     vertical-align: middle;
     height: 13.4%;
-    width: 6.5%;
-}
+    width: 6.5%; }
+    nidget-text.number.left {
+      left: 29%; }
+    nidget-text.number.right {
+      left: 62%; }
+    nidget-text.number.left.top {
+      top: 35%; }
+    nidget-text.number.left.middle {
+      top: 55%; }
+    nidget-text.number.left.bottom {
+      top: 74%; }
+    nidget-text.number.right.top {
+      top: 45%; }
+    nidget-text.number.right.bottom {
+      top: 64%; }
 
-.number.left{
-    left: 29%;
-}
-      
-.number.right{
-    left: 62%;
-}
-
-.number.left.top{
-    top: 35%;
-}
-
-.number.left.middle{
-    top: 55%;
-}
-
-.number.left.bottom{
-    top: 74%;
-}
-
-.number.right.top{
-    top: 45%;
-}
-
-.number.right.bottom{
-    top: 64%;
-}
+/*# sourceMappingURL=playerDialogFragment.css.map */

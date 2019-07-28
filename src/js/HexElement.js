@@ -8,43 +8,35 @@ class HexElement extends NidgetElement{
         super();
     }
     
-    connectedCallback(){
-        let axialAttr = this.getAttribute(HexElement.axialAttribute); 
-        if (!axialAttr){
-            axialAttr = "0, 0, 0";
-            this.setAttribute(HexElement.axialAttribute, axialAttr);
-        }
-        
-        if (axialAttr !== "" && axialAttr !== null){
-            let axialArray = axialAttr.split(/[ ,]+/g);
-            let x = axialArray.length >= 1 ? parseFloat(axialArray[0]) : 0;
-            let y = axialArray.length >= 2 ? parseFloat(axialArray[1]) : 0;
-            let z = axialArray.length >= 3 ? parseFloat(axialArray[2]) : 0;
-            this._axial = new Axial(x, y, z);
+    connectedCallback(){       
+        if (!this.axial){
+            this.axial = "0, 0, 0";
         }
         super.connectedCallback();
     }
     
-    static get observedAttributes() { return [HexElement.axialAttribute]; }
-    
     attributeChangedCallback(name, oldValue, newValue) {
-        let axialAttr = newValue;
-        if (axialAttr !== "" && axialAttr !== null){
-            let axialArray = axialAttr.split(/[ ,]+/g);
-            let x = axialArray.length >= 1 ? parseFloat(axialArray[0]) : 0;
-            let y = axialArray.length >= 2 ? parseFloat(axialArray[1]) : 0;
-            let z = axialArray.length >= 3 ? parseFloat(axialArray[2]) : 0;
-            this._axial = new Axial(x, y, z);
-        }        
-    }     
-    
-    set axial(ax){
-        this._axial = ax;
-        this.setAttribute(HexElement.axialAttribute, `${ax.x}, ${ax.y}, ${ax.z}`);
+        
     }
     
+    /**
+     * Accepts either a string or an axial object.
+     */
+    set axial(ax){
+        if (typeof(ax) === "string"){
+            this.setAttribute(HexElement.axialAttribute, ax);
+        } else {
+            this.setAttribute(HexElement.axialAttribute, `${ax.x}, ${ax.y}, ${ax.z}`);
+        }
+    }
+    
+    /**
+     * Returns an axial object.
+     */
     get axial(){
-        return this._axial;
+        let axialString = this.getAttribute(HexElement.axialAttribute);
+        if (!axialString) return undefined;
+        return new Axial(axialString);
     }    
 };
 

@@ -33,11 +33,11 @@ class ResourceTileElement extends TileElement {
     }
 
     get number() {
-        return $(this).attr(ResourceTileElement.numberAttribute);
+        return this.getAttribute(ResourceTileElement.numberAttribute);
     }
 
     set number(n) {
-        $(this).attr(ResourceTileElement.numberAttribute, n);
+        this.setAttribute(ResourceTileElement.numberAttribute, n);
         this.hexImg.setAttribute(NumberImage.numberAttribute, n);
     }
 }
