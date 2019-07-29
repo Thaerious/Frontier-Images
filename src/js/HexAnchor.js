@@ -163,9 +163,6 @@ class HexAnchor extends NidgetElement {
             throw "Invalid axial: " + ax;
         }
 
-        if(hexElement.getAttribute("hex-type") === "port0"){
-            console.log("locate " + hexElement.tagName + " " + hexElement.getAttribute("hex-type") + " " + loc.x + ", " + loc.y);
-        }
         hexElement.locate(loc.x, loc.y);
         this.map.set(hexElement, ax);
     }

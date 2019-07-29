@@ -27,7 +27,7 @@ class Main {
     async start() {
         console.log("start");
         let q = document.querySelector("#mapBoundingBox");
-//        q.onResize = resizeMap.bind(q);
+        q.onResize = resizeMap.bind(q);
         this.attachTargetAnchors();
         new Controller();
     }
@@ -61,13 +61,6 @@ function resizeMapVertDominant(targetHeight, prevHeight) {
     hexWidth = Math.trunc(hexWidth * 1000, 3) / 1000;
 
     let mapAnchor = document.querySelector("#mapAnchor");
-    mapAnchor.hexWidth = hexWidth;
-    mapAnchor.hexHeight = hexHeight;
-
-    for (let e of mapAnchor.children) {
-        e.scale(targetHeight / prevHeight);
-        if (!e instanceof HexElement) continue;
-    }
-    
+    mapAnchor.scale(targetHeight/ prevHeight);
     $("#mapAnchor").css("top", `${targetHeight / 2}px`);
 }
