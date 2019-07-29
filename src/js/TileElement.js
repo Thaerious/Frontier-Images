@@ -41,22 +41,22 @@ class TileElement extends HexElement{
 
 /* tile types corrispond to image filename */
 TileElement.TileType = {
-    WATER    : "WATER",
-    FIELD    : "FIELD",
-    FOREST   : "FOREST",
-    HILL     : "HILL",
-    MOUNTAIN : "MOUNTAIN",
-    PASTURE  : "PASTURE",
-    DESERT   : "DESERT",
-    PORT0    : "PORT0",
-    PORT1    : "PORT1",
-    PORT2    : "PORT2",
-    PORT3    : "PORT3",
-    PORT4    : "PORT4",
-    PORT5    : "PORT5"    
+    WATER    : "water",
+    FIELD    : "field",
+    FOREST   : "forest",
+    HILL     : "hill",
+    MOUNTAIN : "mountain",
+    PASTURE  : "pasture",
+    DESERT   : "desert",
+    PORT0    : "port0",
+    PORT1    : "port1",
+    PORT2    : "port2",
+    PORT3    : "port3",
+    PORT4    : "port4",
+    PORT5    : "port5"    
 };
 
-TileElement.imageDirectory = "assets/images/hex/";
+TileElement.imageDirectory = "assets/images/hexes/";
 TileElement.typeAttribute = "hex-type";
 
 window.customElements.define('tile-element', TileElement);

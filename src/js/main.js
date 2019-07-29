@@ -20,6 +20,7 @@ const Controller = require("./controller/Controller");
 window.addEventListener("load", () => {
     let main = new Main();
     main.start();
+    window.mapanchor = document.querySelector("#mapAnchor");
 });
 
 class Main {

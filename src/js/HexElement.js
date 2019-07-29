@@ -15,8 +15,10 @@ class HexElement extends NidgetElement{
         super.connectedCallback();
     }
     
-    attributeChangedCallback(name, oldValue, newValue) {
-        
+    attributeChangedCallback(name, oldValue, newValue) {}
+    
+    scale(w, h){
+        super.scale(w, h, false);
     }
     
     /**

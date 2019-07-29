@@ -27,7 +27,7 @@ class HexImage extends NidgetHTMLImage{
 };
 
 HexImage.imageSuffix = ".png";
-HexImage.imagePath = "assets/images/hex/";
+HexImage.imagePath = "assets/images/hexes/";
 HexImage.typeAttribute = "hex-type";
 window.customElements.define('hex-image', HexImage, {extends: "img"});
 module.exports = HexImage;

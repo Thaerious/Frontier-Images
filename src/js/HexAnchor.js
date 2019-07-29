@@ -79,20 +79,20 @@ class HexAnchor extends NidgetElement {
         }
     }
 
-    get hexWidth(){
-        return $(this).attr(HexAnchor.widthAttribute);
+    get hexWidth(){        
+        return this.getAttribute(HexAnchor.widthAttribute);
     }
 
     get hexHeight(){
-        return $(this).attr(HexAnchor.heightAttribute);
+        return this.getAttribute(HexAnchor.heightAttribute);
     }
     
     set hexWidth(v){
-        return $(this).attr(HexAnchor.widthAttribute, v);
+        return this.setAttribute(HexAnchor.widthAttribute, v);
     }
 
     set hexHeight(v){
-        return $(this).attr(HexAnchor.heightAttribute, v);
+        return this.setAttribute(HexAnchor.heightAttribute, v);
     }    
 
     connectedCallback() {
@@ -112,8 +112,7 @@ class HexAnchor extends NidgetElement {
         this.map.delete(hexElement);
     }
 
-    relocate(){
-        console.log("relocate");
+    relocate(){        
         for (let e of this.children) this.locate(e);
     }
 
@@ -164,6 +163,9 @@ class HexAnchor extends NidgetElement {
             throw "Invalid axial: " + ax;
         }
 
+        if(hexElement.getAttribute("hex-type") === "port0"){
+            console.log("locate " + hexElement.tagName + " " + hexElement.getAttribute("hex-type") + " " + loc.x + ", " + loc.y);
+        }
         hexElement.locate(loc.x, loc.y);
         this.map.set(hexElement, ax);
     }
@@ -271,8 +273,7 @@ class HexAnchor extends NidgetElement {
         if (!h) h = w;
         super.scale(w, h);
         this.hexHeight = this.hexHeight * h;
-        this.hexWidth = this.hexWidth * w;
-        
+        this.hexWidth = this.hexWidth * w;        
     }
 }
 
