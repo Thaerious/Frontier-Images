@@ -1,7 +1,7 @@
 "use strict";
 const $ = window.$ ? window.$ : require("jquery");
 const NidgetElement = require("@thaerious/nidget").NidgetElement;
-const Axial = require("./Axial");
+const Axial = require("../utility/Axial");
 
 class HexElement extends NidgetElement{
     constructor(){
@@ -10,7 +10,7 @@ class HexElement extends NidgetElement{
     
     connectedCallback(){       
         if (!this.axial){
-            this.axial = "0, 0, 0";
+            this.axial = "0 0 0";
         }
         super.connectedCallback();
     }
@@ -28,7 +28,7 @@ class HexElement extends NidgetElement{
         if (typeof(ax) === "string"){
             this.setAttribute(HexElement.axialAttribute, ax);
         } else {
-            this.setAttribute(HexElement.axialAttribute, `${ax.x}, ${ax.y}, ${ax.z}`);
+            this.setAttribute(HexElement.axialAttribute, ax.toString());
         }
     }
     

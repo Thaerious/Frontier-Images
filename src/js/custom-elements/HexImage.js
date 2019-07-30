@@ -10,6 +10,7 @@ class HexImage extends NidgetHTMLImage{
     connectedCallback(){
         this._updateRendering();
         this.setAttribute("is", "hex-image");
+        this.setAttribute("class", "hex-image");
     }
     
     static get observedAttributes() { return [HexImage.typeAttribute]; }

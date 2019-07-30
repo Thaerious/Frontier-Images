@@ -33,27 +33,27 @@ and open the template in the editor.
             <nidget-element data-pid="4" class="playerDialog" template="playerDialog"></nidget-element>
         </div>
 
-    <nidget-element id="mapBoundingBox" class="vert-center" interfaces="resize">
-        <radial-hex-collection id="mapAnchor" hex-width="120" hex-height="104">
-            <tile-element hex-type="desert"></tile-element>      
-            <resource-tile-element hex-type="forest" number="2"></resource-tile-element>      
-            <resource-tile-element hex-type="forest" number="3"></resource-tile-element>
-            <resource-tile-element hex-type="forest" number="4"></resource-tile-element>
-            <resource-tile-element hex-type="forest" number="5"></resource-tile-element>      
-            <resource-tile-element hex-type="pasture" number="6"></resource-tile-element>
-            <resource-tile-element hex-type="pasture" number="8"></resource-tile-element>
-            <resource-tile-element hex-type="pasture" number="9"></resource-tile-element>
-            <resource-tile-element hex-type="pasture" number="10"></resource-tile-element>
-            <resource-tile-element hex-type="field" number="11"></resource-tile-element>
-            <resource-tile-element hex-type="field" number="12"></resource-tile-element>
-            <resource-tile-element hex-type="field" number="3"></resource-tile-element>
-            <resource-tile-element hex-type="field" number="4"></resource-tile-element>
-            <resource-tile-element hex-type="hill" number="5"></resource-tile-element>
-            <resource-tile-element hex-type="hill" number="6"></resource-tile-element>
-            <resource-tile-element hex-type="hill" number="8"></resource-tile-element>
-            <resource-tile-element hex-type="mountain" number="9"></resource-tile-element>
-            <resource-tile-element hex-type="mountain" number="10"></resource-tile-element>
-            <resource-tile-element hex-type="mountain" number="11"></resource-tile-element>        
+    <nidget-element id="mapBoundingBox" class="vert-center">
+        <radial-hex-collection id="mapAnchor" interfaces="resize">
+            <tile-element hex-type="desert" playable></tile-element>      
+            <resource-tile-element hex-type="forest" number="2" playable></resource-tile-element>      
+            <resource-tile-element hex-type="forest" number="3" playable></resource-tile-element>
+            <resource-tile-element hex-type="forest" number="4" playable></resource-tile-element>
+            <resource-tile-element hex-type="forest" number="5" playable></resource-tile-element>      
+            <resource-tile-element hex-type="pasture" number="6" playable></resource-tile-element>
+            <resource-tile-element hex-type="pasture" number="8" playable></resource-tile-element>
+            <resource-tile-element hex-type="pasture" number="9" playable></resource-tile-element>
+            <resource-tile-element hex-type="pasture" number="10" playable></resource-tile-element>
+            <resource-tile-element hex-type="field" number="11" playable></resource-tile-element>
+            <resource-tile-element hex-type="field" number="12" playable></resource-tile-element>
+            <resource-tile-element hex-type="field" number="3" playable></resource-tile-element>
+            <resource-tile-element hex-type="field" number="4" playable></resource-tile-element>
+            <resource-tile-element hex-type="hill" number="5" playable></resource-tile-element>
+            <resource-tile-element hex-type="hill" number="6" playable></resource-tile-element>
+            <resource-tile-element hex-type="hill" number="8" playable></resource-tile-element>
+            <resource-tile-element hex-type="mountain" number="9" playable></resource-tile-element>
+            <resource-tile-element hex-type="mountain" number="10" playable></resource-tile-element>
+            <resource-tile-element hex-type="mountain" number="11" playable></resource-tile-element>        
             <port-tile-element facing="S" resource="wheat"></port-tile-element>
             <tile-element hex-type="water"></tile-element>        
             <port-tile-element facing="SW" resource="three"></port-tile-element>
@@ -84,7 +84,7 @@ and open the template in the editor.
         <nidget-text data-cat="brick" class="resource five" fit="true">0</nidget-text>
     </frontier-bank>
 
-    <nidget-element id="store" class="vert-center">
+    <frontier-store id="store" class="vert-center">
         <img class="header nidget-header" src="assets/images/new/store-header.png" alt=""/>
         <img class="background" src="assets/images/new/store-background.png" alt=""/>
         <div class="inner">
@@ -115,7 +115,7 @@ and open the template in the editor.
         </div>
     </nidget-element>   
     
-    <img is="frontier-road" style="position:absolute; right: 50px; top:50px"></img>
+    <!--<img is="frontier-road" style="position:absolute; right: 50px; top:50px"></img>-->
 
 </body>
 </html>

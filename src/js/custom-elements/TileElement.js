@@ -13,8 +13,6 @@ class TileElement extends HexElement{
     connectedCallback(){
         super.connectedCallback();               
         $(this).append(this.hexImg);
-        $(this).css("box-sizing: content-box");
-        $(this.hexImg).css("box-sizing: content-box");
     }
     
     static get observedAttributes() {

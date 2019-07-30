@@ -1,6 +1,7 @@
 "use strict";
 const $ = window.$ ? window.$ : require("jquery");
-const AxialCollection = require("./utility/AxialCollection");
+const AxialCollection = require("./AxialCollection");
+const Cardinality = require("./Cardinality");
 
 //
 //        (z)------
@@ -56,10 +57,6 @@ class Axial {
         return true;
     }
 
-    toString() {
-        return this.x + "," + this.y + "," + this.z;
-    }
-
     sum() {
         return this.x + this.y + this.z;
     }
@@ -102,7 +99,7 @@ class Axial {
      * only this is added.  If map provided all axials are appended to the map, then
      * an array from the map's values is returned.
      */
-    getEdges(map = new AxialCollection()) {
+    edges(map = new AxialCollection()) {
         if (this.isHex()) {
             map.add(new Axial(this.x + 0.5, this.y, this.z + 1));
             map.add(new Axial(this.x + 1, this.y, this.z + 0.5));
@@ -127,11 +124,60 @@ class Axial {
     }
 
     /**
+     * Direction from this axial to target axial.
+     * @returns {undefined}
+     */
+    cardinality(target, debug = false) {
+        if (debug){
+            console.log(this)
+            console.log(target)
+            console.log(this.diff(target));
+        }
+        let diff = this.diff(target);
+        
+        switch(diff.toString()){
+            /* from hex to edge */
+            case "0.5 0 1": return Cardinality.north;
+            case "1 0 0.5": return Cardinality.northEast;
+            case "1 0.5 0": return Cardinality.southEast;
+            case "0.5 1 0": return Cardinality.south;
+            case "0 1 0.5": return Cardinality.southWest;
+            case "0 0.5 1": return Cardinality.northWest;
+            
+            /* from edge to hex */
+            case "-0.5 0 -1": return Cardinality.south;
+            case "-1 0 -0.5": return Cardinality.southWest;
+            case "-1 -0.5 0": return Cardinality.northWest;
+            case "-0.5 -1 0": return Cardinality.north;
+            case "0 -1 -0.5": return Cardinality.northEast;
+            case "0 -0.5 -1": return Cardinality.southEast;            
+            
+            /* from hex to corner */
+            case "1 0 0": return Cardinality.east;
+            case "1 1 0": return Cardinality.southEast;
+            case "0 1 0": return Cardinality.southWest;
+            case "0 1 1": return Cardinality.west;
+            case "0 0 1": return Cardinality.northWest;
+            case "1 0 1": return Cardinality.northEast;
+            
+            /* from corner to hex */
+            case "-1 0 0": return Cardinality.west;
+            case "-1 -1 0": return Cardinality.northWest;
+            case "0 -1 0": return Cardinality.northEast;
+            case "0 -1 -1": return Cardinality.east;
+            case "0 0 -1": return Cardinality.southEast;
+            case "-1 0 -1": return Cardinality.southWest;            
+            
+            default: return null;
+        }
+    }
+
+    /**
      * Return an array of all corners from this axial.  If this axial is a corner
      * only this is added.  If map provided all axials are appended to the map, then
      * an array from the map's values is returned.
      */
-    getCorners(map = new AxialCollection()) {
+    corners(map = new AxialCollection()) {
         if (this.isHex()) {
             map.add(new Axial(this.x, this.y, this.z + 1));
             map.add(new Axial(this.x + 1, this.y, this.z + 1));
@@ -157,17 +203,17 @@ class Axial {
         return map;
     }
 
-    getHexes(map = new AxialCollection()) {
+    hexes(map = new AxialCollection()) {
         if (this.isEdge()) {
             if (Math.floor(this.x) !== this.x) {
-                map.add(new Axial(Math.floor(this.x), this.y, this.z + 1));
-                map.add(new Axial(Math.floor(this.x), this.y + 1, this.z));
+                map.add(new Axial(Math.floor(this.x), this.y, this.z - 1));
+                map.add(new Axial(Math.floor(this.x), this.y - 1, this.z));
             } else if (Math.floor(this.y) !== this.y) {
-                map.add(new Axial(this.x + 1, Math.floor(this.y), this.z));
-                map.add(new Axial(this.x, Math.floor(this.y), this.z + 1));
+                map.add(new Axial(this.x - 1, Math.floor(this.y), this.z));
+                map.add(new Axial(this.x, Math.floor(this.y), this.z - 1));
             } else if (Math.floor(this.z) !== this.z) {
-                map.add(new Axial(this.x + 1, this.y, Math.floor(this.z)));
-                map.add(new Axial(this.x, this.y + 1, Math.floor(this.z)));
+                map.add(new Axial(this.x - 1, this.y, Math.floor(this.z)));
+                map.add(new Axial(this.x, this.y - 1, Math.floor(this.z)));
             }
         } else if (this.isCorner()) {
             if (this.sum() === 1) {
@@ -184,13 +230,21 @@ class Axial {
         }
         return map;
     }
-    
-    toString(){
-        return this.x + ", " + this.y + ", " + this.z;
+
+    toString() {
+        return this.x + " " + this.y + " " + this.z;
+    }
+
+    hashCode() {
+        return this.toString();
     }
     
-    hashCode(){
-        return this.toString();
+    /**
+     * This axial - that axial
+     * @returns {undefined}
+     */
+    diff(that){
+        return new Axial(this.x - that.x, this.y - that.y, this.z - that.z);
     }
 }
 

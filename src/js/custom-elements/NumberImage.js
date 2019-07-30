@@ -11,6 +11,7 @@ class NumberImage extends NidgetHTMLImage{
         this._updateRendering();
         this.classList.add("centered-image");
         this.setAttribute("is", "number-image");
+        this.setAttribute("class", "number-image");
     }
     
     static get observedAttributes() { return [NumberImage.numberAttribute]; }

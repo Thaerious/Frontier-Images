@@ -1,5 +1,5 @@
 "use strict";
-const NidgetAxialImage = require("../NidgetAxialImage");
+const NidgetAxialImage = require("./NidgetAxialImage");
 
 class CircleMarker extends NidgetAxialImage {
     constructor() {      
@@ -10,9 +10,7 @@ class CircleMarker extends NidgetAxialImage {
         super.connectedCallback();
         this.src = "assets/images/new/circle.png";
         this.setAttribute("is", "frontier-circle-marker");
-//        this.setAttribute("hex-ratio", "hex-width 0.5");
-        this.width = 32;
-        this.height = 32;
+        this.setAttribute("class", "frontier-circle-marker");
     }
 }
 

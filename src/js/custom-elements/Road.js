@@ -1,5 +1,6 @@
 "use strict";
-const NidgetAxialImage = require("../NidgetAxialImage");
+const NidgetAxialImage = require("./NidgetAxialImage");
+const Cardinality = require("../utility/Cardinality");
 
 class Road extends NidgetAxialImage {
     constructor() {      
@@ -49,22 +50,23 @@ class Road extends NidgetAxialImage {
         this.src = "assets/images/pieces/road-p" + owner + ".png";        
     }
 
-    updateCardinality() {
-        switch (this.getAttribute(Road.cardinalityAttribute)) {
-            case "E":
-            case "W":
+    updateCardinality() {        
+        let value = this.getAttribute(Road.cardinalityAttribute);
+        switch (value) {
+            case Cardinality.north:
+            case Cardinality.south:
                 this.style.transform = "rotate(0deg)";
                 break;
-            case "NE":
-            case "SW":
-                this.style.transform = "rotate(-60deg)";
-                break;
-            case "NW":
-            case "SE":
+            case Cardinality.northEast:
+            case Cardinality.southWest:
                 this.style.transform = "rotate(60deg)";
                 break;
+            case Cardinality.northWest:
+            case Cardinality.southEast:
+                this.style.transform = "rotate(-60deg)";
+                break;
             default:
-                throw new Error("Invalid cardinality value");
+                throw new Error("Invalid cardinality value: " + value);
         }
     }
 }

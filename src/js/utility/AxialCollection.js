@@ -12,8 +12,19 @@ class AxialCollection {
         this.map = new HashMap();
     }
 
+    toArray(rvalue = []){
+        for (let v of this.map.values()){
+            rvalue.push(v);
+        }
+        return rvalue;
+    }
+
     add(axial) {
-        this.map.set(axial, axial);
+        if (axial instanceof AxialCollection){
+            for (let ax of axial) this.add(ax);
+        } else {
+            this.map.set(axial, axial);
+        }
     }
 
     /**

@@ -1,6 +1,6 @@
 "use strict";
 const NidgetHTMLImage = require("@thaerious/nidget").NidgetHTMLImage;
-const Axial = require("./Axial");
+const Axial = require("../utility/Axial");
 
 class NidgetAxialImage extends NidgetHTMLImage{
     constructor(){
@@ -8,7 +8,7 @@ class NidgetAxialImage extends NidgetHTMLImage{
     }
     
     connectedCallback(){       
-        if (!this.axial) this.axial = "0, 0, 0";
+        if (!this.axial) this.axial = "0 0 0";
     }
     
     scale(dw, dh){
@@ -26,7 +26,7 @@ class NidgetAxialImage extends NidgetHTMLImage{
         if (typeof(ax) === "string"){
             this.setAttribute(NidgetAxialImage.axialAttribute, ax);
         } else {
-            this.setAttribute(NidgetAxialImage.axialAttribute, `${ax.x}, ${ax.y}, ${ax.z}`);
+            this.setAttribute(NidgetAxialImage.axialAttribute, ax.toString());
         }
     }
     

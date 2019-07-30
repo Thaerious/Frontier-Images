@@ -11,6 +11,7 @@ class ResourceImage extends NidgetHTMLImage{
         this._updateRendering();
         this.classList.add("centered-image");
         this.setAttribute("is", "resource-image");
+        this.setAttribute("class", "resource-image");
     }
     
     static get observedAttributes() { return [ResourceImage.resourceAttribute]; }
