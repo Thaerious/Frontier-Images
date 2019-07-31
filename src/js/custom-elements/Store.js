@@ -2,6 +2,7 @@
 const MouseUtilities = require("@thaerious/nidget").MouseUtilities;
 const NidgetImage = require("@thaerious/nidget").NidgetImage;
 const BuyRoadController = require("../controller/BuyRoadController");
+const BuyVillageController = require("../controller/BuyVillageController");
 const NidgetElement = require("@thaerious/nidget").NidgetElement;
 
 class Store extends NidgetElement {
@@ -24,16 +25,13 @@ class Store extends NidgetElement {
     }
 
     buyRoad() {
-        console.log("buy road");
-        this.buyRoadController = new BuyRoadController(0);
-        this.buyRoadController.start();
+        let buyRoadController = new BuyRoadController(0);
+        buyRoadController.start();
     }
 
     buyVillage() {
-        this.bank.wood = this.bank.wood - 1;
-        this.bank.wheat = this.bank.wheat - 1;
-        this.bank.wool = this.bank.wool - 1;
-        this.bank.brick = this.bank.brick - 1;
+        let buyRoadController = new BuyVillageController(0);
+        buyRoadController.start();        
     }
 
     buyCity() {

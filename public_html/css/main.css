@@ -77,17 +77,26 @@ body.landscape #mapBoundingBox {
   position: absolute;
   left: 50%;
   top: 50%;
-  height: calc(104 / 1000 * 100vh);
-  width: calc(120 / 1000 * 100vh);
+  height: calc(104 / 800 * 100vh);
+  width: calc(120 / 800 * 100vh);
   transform: translate(-50%, -50%); }
   #mapAnchor * {
     position: absolute;
     box-sizing: content-box; }
+  #mapAnchor .frontier-road {
+    width: calc(57 / 104 * 100%);
+    z-index: 10;
+    transform: translate(-50%, -50%); }
+  #mapAnchor .frontier-village {
+    width: calc(50 / 104 * 100%);
+    z-index: 11;
+    transform: translate(-50%, -50%); }
   #mapAnchor .frontier-circle-marker {
     display: none;
     height: calc(40 / 104 * 100%);
     width: calc(40 / 120 * 100%);
-    z-index: 10; }
+    z-index: 10;
+    transform: translate(-50%, -50%); }
   #mapAnchor tile-element, #mapAnchor port-tile-element, #mapAnchor resource-tile-element {
     height: 100%;
     width: 100%; }

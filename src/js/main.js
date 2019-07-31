@@ -6,13 +6,15 @@ window.nidget = require("@thaerious/nidget");
 require("./custom-elements/PortTileElement");
 require("./custom-elements/HexElement");
 require("./custom-elements/HexAnchor");
-require("./custom-elements/RadialHexCollection");
 require("./custom-elements/TileElement");
 require("./custom-elements/ResourceTileElement");
 require("./custom-elements/Store");
 require("./custom-elements/Bank");
 require("./custom-elements/Road");
 
+/* layout manager for HexAnchor */
+console.log(nidget);
+nidget.layouts.RadialHexLayout = require("./custom-elements/layout-managers/RadialHexLayout");
 
 const CircleMarker = require("./custom-elements/CircleMarker");
 /* ------------------- */
@@ -32,8 +34,9 @@ class Main {
     
     attachTargetAnchors(){
         let mapAnchor = window.mapAnchor = document.querySelector("#mapAnchor");
+        mapAnchor.removeAttribute("layout-manager");
         let axials = mapAnchor.filter("[playable]").axials;        
-        window.axials = axials;
+        window.axials = axials;               
         for (let ax of axials.corners()){
             let img = new CircleMarker();
             img.axial = ax;

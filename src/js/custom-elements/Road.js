@@ -9,8 +9,9 @@ class Road extends NidgetAxialImage {
 
     connectedCallback(){     
         super.connectedCallback();
-        this.src = "assets/images/pieces/road-white.png";
+        this.src = "assets/images/pieces/road-p0.png";
         this.setAttribute("is", "frontier-road");
+        this.setAttribute("class", "frontier-road");
     }
 
     static get observedAttributes() {
@@ -20,10 +21,10 @@ class Road extends NidgetAxialImage {
     attributeChangedCallback(name, oldValue, newValue) {
         switch (name){
             case Road.cardinalityAttribute:
-                this.updateCardinality();
+                this.updateCardinality(this.getAttribute(Road.cardinalityAttribute));
                 break;
             case Road.ownerAttribute:
-                this.updateOwner();
+                this.updateOwner(this.getAttribute(Road.ownerAttribute));
                 break;                
         }
     } 
@@ -44,26 +45,26 @@ class Road extends NidgetAxialImage {
         return this.setAttribute(Road.ownerAttribute, value);
     }    
 
-    updateOwner(){
-        let owner = this.getAttribute(Road.ownerAttribute);
+    updateOwner(owner){
         if (owner < 0 || owner > 3) throw new Error("Invalid owner value");
         this.src = "assets/images/pieces/road-p" + owner + ".png";        
     }
 
-    updateCardinality() {        
-        let value = this.getAttribute(Road.cardinalityAttribute);
+    updateCardinality(value, clearTransformer = true) {
+        if (clearTransformer) this.transformer.clear();        
+        
         switch (value) {
             case Cardinality.north:
             case Cardinality.south:
-                this.style.transform = "rotate(0deg)";
+                this.transformer.append().push("rotate(0deg)");
                 break;
             case Cardinality.northEast:
             case Cardinality.southWest:
-                this.style.transform = "rotate(60deg)";
+                this.transformer.append().push("rotate(60deg)");
                 break;
             case Cardinality.northWest:
             case Cardinality.southEast:
-                this.style.transform = "rotate(-60deg)";
+                this.transformer.append().push("rotate(-60deg)");
                 break;
             default:
                 throw new Error("Invalid cardinality value: " + value);

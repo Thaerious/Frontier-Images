@@ -34,7 +34,7 @@ and open the template in the editor.
         </div>
 
     <nidget-element id="mapBoundingBox" class="vert-center">
-        <radial-hex-collection id="mapAnchor" interfaces="resize">
+        <hex-anchor id="mapAnchor" layout-manager="RadialHexLayout" interfaces="resize">
             <tile-element hex-type="desert" playable></tile-element>      
             <resource-tile-element hex-type="forest" number="2" playable></resource-tile-element>      
             <resource-tile-element hex-type="forest" number="3" playable></resource-tile-element>
@@ -72,7 +72,7 @@ and open the template in the editor.
             <tile-element hex-type="water"></tile-element> 
             <port-tile-element facing="S" resource="three"></port-tile-element>
             <tile-element hex-type="water"></tile-element>         
-        </radial-hex-collection>            
+        </hex-anchor>            
     </nidget-element>
 
     <frontier-bank class="vert-center" id="bank">
