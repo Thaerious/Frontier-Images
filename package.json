@@ -27,5 +27,13 @@
   },
   "devDependencies": {},
   "license": "ISC",
-  "description": ""
+  "description": "npm run watch-css compiles files from src/scss to public_html/css (main.css)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Thaerious/NidgetDev.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Thaerious/NidgetDev/issues"
+  },
+  "homepage": "https://github.com/Thaerious/NidgetDev#readme"
 }

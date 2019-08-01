@@ -3,6 +3,8 @@ const MouseUtilities = require("@thaerious/nidget").MouseUtilities;
 const NidgetImage = require("@thaerious/nidget").NidgetImage;
 const BuyRoadController = require("../controller/BuyRoadController");
 const BuyVillageController = require("../controller/BuyVillageController");
+const BuyCityController = require("../controller/BuyCityController");
+const BuyCardController = require("../controller/BuyCardController");
 const NidgetElement = require("@thaerious/nidget").NidgetElement;
 
 class Store extends NidgetElement {
@@ -35,14 +37,13 @@ class Store extends NidgetElement {
     }
 
     buyCity() {
-        this.bank.wheat = this.bank.wheat - 2;
-        this.bank.ore = this.bank.ore - 3;
+        let buyCityController = new BuyCityController(0);
+        buyCityController.start();  
     }
 
     buyCard() {
-        this.bank.wheat = this.bank.wheat - 1;
-        this.bank.wool = this.bank.wool - 1;
-        this.bank.ore = this.bank.ore - 1;
+        let buyCardController = new BuyCardController(0);
+        buyCardController.start();  
     }
 }
 

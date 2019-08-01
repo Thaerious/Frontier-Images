@@ -14,8 +14,8 @@ body.landscape{
     position: absolute;
     left: 50%;
     top: 50%;
-    height: calc(104 / 800 * 100vh);
-    width: calc(120 / 800 * 100vh);
+    height: calc(104 / 900 * 100vh);
+    width: calc(120 / 900 * 100vh);
     transform: translate(-50%, -50%);
 
     * {
@@ -31,6 +31,12 @@ body.landscape{
     
     .frontier-village{
         width: calc(50 / 104 * 100%);
+        z-index: 11;
+        transform: translate(-50%, -50%);
+    }    
+    
+    .frontier-city{
+        width: calc(65 / 104 * 100%);
         z-index: 11;
         transform: translate(-50%, -50%);
     }    

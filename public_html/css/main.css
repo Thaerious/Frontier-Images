@@ -77,8 +77,8 @@ body.landscape #mapBoundingBox {
   position: absolute;
   left: 50%;
   top: 50%;
-  height: calc(104 / 800 * 100vh);
-  width: calc(120 / 800 * 100vh);
+  height: calc(104 / 900 * 100vh);
+  width: calc(120 / 900 * 100vh);
   transform: translate(-50%, -50%); }
   #mapAnchor * {
     position: absolute;
@@ -89,6 +89,10 @@ body.landscape #mapBoundingBox {
     transform: translate(-50%, -50%); }
   #mapAnchor .frontier-village {
     width: calc(50 / 104 * 100%);
+    z-index: 11;
+    transform: translate(-50%, -50%); }
+  #mapAnchor .frontier-city {
+    width: calc(65 / 104 * 100%);
     z-index: 11;
     transform: translate(-50%, -50%); }
   #mapAnchor .frontier-circle-marker {
@@ -156,5 +160,17 @@ body {
   .playerDialog[data-pid='4'] {
     background-color: yellow;
     /*top: 75%;*/ }
+
+frontier-cardholder {
+  position: absolute;
+  background-color: rgba(100, 100, 100, 0.5);
+  width: calc(0.9066 * 90vh);
+  height: calc(128 / 500 * 100vh);
+  left: 20vh;
+  bottom: 0;
+  z-index: 10;
+  transform: translateY(60%); }
+  frontier-cardholder:hover {
+    transform: translateY(0); }
 
 /*# sourceMappingURL=main.css.map */
