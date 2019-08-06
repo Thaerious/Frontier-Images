@@ -22,7 +22,6 @@ class BuyRoadController {
         window.road = this.road;
         document.body.appendChild(this.road);
         this.road.owner = this.owner;
-        this.road.style.transform = "translate(-50%, -50%)";
         MouseUtilities.attachElement(this.road);
 
         this.map.query("tile-element,port-tile-element,resource-tile-element", (ele) =>{
@@ -43,6 +42,10 @@ class BuyRoadController {
             ele.addEventListener("mouseenter", enterListener);
             ele.addEventListener("mouseup", mouseUpListener);
         });
+        
+        let cancelListener = cancelEventListener.bind(this);
+        this.eventListeners.push({ele: document, type: "mouseup", event: cancelListener});
+        document.addEventListener("mouseup", cancelListener);        
     }
 
     cleanup() {
@@ -54,11 +57,20 @@ class BuyRoadController {
     }
 }
 
+function cancelEventListener(event) {
+    console.log(this.bank);
+    this.bank.wood = this.bank.wood + 1;
+    this.bank.brick = this.bank.brick + 1;
+
+    MouseUtilities.detachElement().detach();
+    this.cleanup();
+    event.stopPropagation();
+}
+
 function mouseEnterEventListener(event) {
     let c = this.hex.cardinality(event.srcElement.axial);
     if (c) {
         this.road.cardinality = c;
-        this.road.transformer.unshift("translate(-50%, -50%)");
     }
 }
 

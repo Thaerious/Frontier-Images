@@ -1,46 +1,43 @@
 "use strict";
-const NidgetAxialImage = require("./NidgetAxialImage");
+const NidgetHTMLImage = require("@thaerious/nidget").NidgetHTMLImage;
 
-class City extends NidgetAxialImage {
+class Card extends NidgetHTMLImage {
     constructor() {      
         super();
     }
 
     connectedCallback(){     
-        super.connectedCallback();
-        this.src = "assets/images/pieces/city-p0.png";
-        this.setAttribute("is", "frontier-city");
-        this.setAttribute("class", "frontier-city");
+        this.src = "assets/images/cards/card-monopoly.png";
+        this.setAttribute("is", "frontier-card");
+        this.setAttribute("class", "frontier-card");
     }
 
     static get observedAttributes() {
-        return [City.ownerAttribute].concat(super.observedAttributes);
+        return [Card.typeAttribute].concat(super.observedAttributes);
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
         switch (name){
-            case City.ownerAttribute:
-                this.updateOwner(this.getAttribute(City.ownerAttribute));
+            case Card.typeAttribute:
+                this.updateType(this.getAttribute(Card.typeAttribute));
                 break;                
         }
-    } 
+    }
     
-    get owner(){
-        return this.getAttribute(City.ownerAttribute);
+    get type(){
+        return this.getAttribute(Card.typeAttribute);
     }
 
-    set owner(value){
-        return this.setAttribute(City.ownerAttribute, value);
+    set type(value){
+        return this.setAttribute(Card.typeAttribute, value);
     }    
 
-    updateOwner(owner){
-        if (owner < 0 || owner > 3) throw new Error("Invalid owner value");
-        this.src = "assets/images/pieces/city-p" + owner + ".png";        
+    updateOwner(type){
+        this.src = `assets/images/cards/card-${type}.png`;
     }
 }
 
-City.axialAttribute = "axial";
-City.ownerAttribute = "owner";
+Card.typeAttribute = "type";
 
-window.customElements.define('frontier-city', City, {extends: "img"});
-module.exports = City;
+window.customElements.define('frontier-card', Card, {extends: "img"});
+module.exports = Card;

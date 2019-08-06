@@ -14,12 +14,10 @@ class Store extends NidgetElement {
 
     connectedCallback() {
         super.connectedCallback();
-        console.log("store ccb");
         window.addEventListener("load", ()=>this.ready());
     }
 
     ready(){
-        console.log("ready");        
         document.querySelector("#bRoad").addEventListener("click", () => this.buyRoad());
         document.querySelector("#bVillage").addEventListener("click", () => this.buyVillage());
         document.querySelector("#bCity").addEventListener("click", () => this.buyCity());

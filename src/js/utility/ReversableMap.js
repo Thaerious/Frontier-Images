@@ -12,7 +12,10 @@ class ReversableMap{
         this.reverse.clear();
     }
     delete(key){
+        if (key.hashCode) key = key.hashCode();
         let value = this.map.get(key);
+        if (value.hashCode) value = value.hashCode();
+                
         this.map.delete(key);
         this.reverse.delete(value);
     }
@@ -30,9 +33,10 @@ class ReversableMap{
         if (value.hashCode) value = value.hashCode();
         return this.reverse.get(value);
     }
-    has(key){
+    hasKey(key){
         if (key.hashCode) key = key.hashCode();
-        return this.map.get(key);
+        console.log(key + ", " + this.map.has(key));
+        return this.map.has(key);
     }
     hasValue(value){
         if (value.hashCode) value = value.hashCode();

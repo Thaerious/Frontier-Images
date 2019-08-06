@@ -35,7 +35,9 @@ and open the template in the editor.
 
     <nidget-element id="mapBoundingBox" class="vert-center">
         <hex-anchor id="mapAnchor" layout-manager="RadialHexLayout" interfaces="resize">
-            <tile-element hex-type="desert" playable></tile-element>      
+            <tile-element hex-type="desert" playable>
+                <img is="frontier-robber" id="robber" src="assets/images/new/robber.png"></img>
+            </tile-element>
             <resource-tile-element hex-type="forest" number="2" playable></resource-tile-element>      
             <resource-tile-element hex-type="forest" number="3" playable></resource-tile-element>
             <resource-tile-element hex-type="forest" number="4" playable></resource-tile-element>
@@ -75,13 +77,26 @@ and open the template in the editor.
         </hex-anchor>            
     </nidget-element>
 
-    <frontier-bank class="vert-center" id="bank">
+    <frontier-bank discard="false" class="vert-center" id="bank">
+        <image class="discard" src="assets/images/new/discard.png"/>    
         <image class="background" src="assets/images/new/bank.png"/>    
-        <nidget-text data-cat="ore" class="resource one" fit="true">0</nidget-text>
-        <nidget-text data-cat="wheat" class="resource two" fit="true">0</nidget-text>
-        <nidget-text data-cat="wood" class="resource three" fit="true">0</nidget-text>
-        <nidget-text data-cat="wool" class="resource four" fit="true">0</nidget-text>
-        <nidget-text data-cat="brick" class="resource five" fit="true">0</nidget-text>
+        <div class="inner">
+            <div data-cat="ore">
+                <nidget-text data-cat="ore" class="resource one" fit="true">0</nidget-text>
+            </div>
+            <div data-cat="wheat">
+                <nidget-text data-cat="wheat" class="resource two" fit="true">0</nidget-text>
+            </div>
+            <div data-cat="wood">
+                <nidget-text data-cat="wood" class="resource three" fit="true">0</nidget-text>
+            </div>
+            <div data-cat="wool">
+                <nidget-text data-cat="wool" class="resource four" fit="true">0</nidget-text>
+            </div>
+            <div data-cat="brick">
+                <nidget-text data-cat="brick" class="resource five" fit="true">0</nidget-text>
+            </div>
+        </div>
     </frontier-bank>
 
     <frontier-store id="store" class="vert-center">
@@ -115,6 +130,6 @@ and open the template in the editor.
         </div>
     </frontier-store>   
 
-    <frontier-cardholder></frontier-cardholder>
+    <frontier-cardholder id="card-holder" interfaces="resize"></frontier-cardholder>
 </body>
 </html>

@@ -4,7 +4,7 @@ const NidgetHTMLImage = require("@thaerious/nidget").NidgetHTMLImage;
 
 class HexImage extends NidgetHTMLImage{
     constructor(){
-        super();
+        super();                
     }
     
     connectedCallback(){

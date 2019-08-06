@@ -1,25 +1,46 @@
 #bank {
   position: relative;
   font-family: arial;
-  /*transform: translateY(-120%);*/
-  width: 15vh; }
+  width: 15vh;
+  cursor: url("/NidgetDev/assets/images/cursors/discard.ico"), pointer; }
+  #bank .discard {
+    position: absolute;
+    left: 0px;
+    top: -17.5%;
+    width: 100%;
+    height: 15%; }
+  #bank[discard='false'] .discard {
+    display: none; }
   #bank .background {
     position: relative;
     width: 100%; }
-  #bank [data-cat] {
-    height: 15%;
+  #bank .inner {
     position: absolute;
-    left: 20%; }
-    #bank [data-cat][data-cat="ore"] {
-      top: 5.5%; }
-    #bank [data-cat][data-cat="wheat"] {
-      top: 23%; }
-    #bank [data-cat][data-cat="wood"] {
-      top: 41%; }
-    #bank [data-cat][data-cat="wool"] {
-      top: 59%; }
-    #bank [data-cat][data-cat="brick"] {
-      top: 77%; }
+    top: 6%;
+    height: 88%;
+    left: 12%;
+    width: 76%; }
+    #bank .inner > [data-cat] {
+      height: 20%;
+      width: 100%;
+      position: absolute;
+      left: 0%; }
+      #bank .inner > [data-cat][data-cat="ore"] {
+        top: 0%; }
+      #bank .inner > [data-cat][data-cat="wheat"] {
+        top: 20%; }
+      #bank .inner > [data-cat][data-cat="wood"] {
+        top: 40%; }
+      #bank .inner > [data-cat][data-cat="wool"] {
+        top: 60%; }
+      #bank .inner > [data-cat][data-cat="brick"] {
+        top: 80%; }
+      #bank .inner > [data-cat] nidget-text {
+        position: absolute;
+        height: 80%;
+        width: 20%;
+        top: 5%;
+        left: 10%; }
 
 #store {
   position: relative;
@@ -86,7 +107,8 @@ body.landscape #mapBoundingBox {
   #mapAnchor .frontier-road {
     width: calc(57 / 104 * 100%);
     z-index: 10;
-    transform: translate(-50%, -50%); }
+    /* road transform done programically */
+    /*transform: translate(-50%, -50%);*/ }
   #mapAnchor .frontier-village {
     width: calc(50 / 104 * 100%);
     z-index: 11;
@@ -104,6 +126,14 @@ body.landscape #mapBoundingBox {
   #mapAnchor tile-element, #mapAnchor port-tile-element, #mapAnchor resource-tile-element {
     height: 100%;
     width: 100%; }
+    #mapAnchor tile-element #robber, #mapAnchor port-tile-element #robber, #mapAnchor resource-tile-element #robber {
+      z-index: 10;
+      height: calc(40 / 104 * 100%);
+      width: calc(40 / 120 * 100%);
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 15; }
     #mapAnchor tile-element .hex-image, #mapAnchor port-tile-element .hex-image, #mapAnchor resource-tile-element .hex-image {
       height: 100%;
       width: 100%;
@@ -163,14 +193,21 @@ body {
 
 frontier-cardholder {
   position: absolute;
-  background-color: rgba(100, 100, 100, 0.5);
-  width: calc(0.9066 * 90vh);
+  /*background-color: rgba(100, 100, 100, 0.5);*/
+  width: calc(100 / 500 * 100vh);
   height: calc(128 / 500 * 100vh);
-  left: 20vh;
+  left: calc(50%);
   bottom: 0;
   z-index: 10;
   transform: translateY(60%); }
-  frontier-cardholder:hover {
-    transform: translateY(0); }
+  frontier-cardholder .frontier-card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-30deg);
+    z-index: 10; }
+    frontier-cardholder .frontier-card:hover {
+      transform: rotate(0deg) translateY(-60%);
+      z-index: 15; }
 
 /*# sourceMappingURL=main.css.map */

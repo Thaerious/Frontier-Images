@@ -37,6 +37,8 @@ class HexAnchor extends NidgetElement {
     }
 
     onResize(prev) {
+        console.log("map resize");
+        console.log(this.width + ", " + this.height);
         this.relocate();
     }
 
@@ -95,6 +97,7 @@ class HexAnchor extends NidgetElement {
     }
 
     onRemove(hexElement) {
+        console.log("onRemove " + hexElement.axial);
         this.map.delete(hexElement);
         if (this.layoutManager) this.layoutManager.onRemove(hexElement);
     }
@@ -210,7 +213,9 @@ class HexAnchor extends NidgetElement {
     getElements(axialCollection) {
         let rvalue = [];
         for (let axial of axialCollection) {
-            rvalue.push(this.map.getKey(axial));
+            if (this.map.hasValue(axial)){
+                rvalue.push(this.map.getKey(axial));
+            }
         }
         return rvalue;
     }

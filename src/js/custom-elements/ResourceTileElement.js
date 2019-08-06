@@ -19,7 +19,8 @@ class ResourceTileElement extends TileElement {
     connectedCallback() {
         super.connectedCallback();
         this.numberImg.setAttribute(NumberImage.numberAttribute, this.number);        
-        $(this).append(this.numberImg);        
+        $(this).append(this.numberImg);
+        this.classList.add("resource-tile");        
     }
 
     attributeChangedCallback(name, oldValue, newValue) {

@@ -13,10 +13,8 @@ class BuyCityController {
     }
 
     start() {
-        this.bank.wood = this.bank.wood - 1;
-        this.bank.wheat = this.bank.wheat - 1;
-        this.bank.wool = this.bank.wool - 1;
-        this.bank.brick = this.bank.brick - 1;
+        this.bank.wheat = this.bank.wheat - 2;
+        this.bank.ore = this.bank.wool - 3;
 
         this.city = new City();
 
@@ -28,11 +26,15 @@ class BuyCityController {
 
         this.map.query(`.frontier-village[owner="${this.owner}"]`, (ele) => {
             ele.show();
-            
-            let mouseUpListener = mouseUpEventListener.bind(this);                        
-            this.eventListeners.push({ele: ele, type: "mouseup", event: mouseUpListener});            
+
+            let mouseUpListener = mouseUpEventListener.bind(this);
+            this.eventListeners.push({ele: ele, type: "mouseup", event: mouseUpListener});
             ele.addEventListener("mouseup", mouseUpListener);
         });
+
+        let cancelListener = cancelEventListener.bind(this);
+        this.eventListeners.push({ele: document, type: "mouseup", event: cancelListener});
+        document.addEventListener("mouseup", cancelListener);
     }
 
     cleanup() {
@@ -42,12 +44,21 @@ class BuyCityController {
     }
 }
 
+function cancelEventListener(event) {
+    this.bank.wheat = this.bank.wheat + 2;
+    this.bank.ore = this.bank.ore + 3;
+
+    MouseUtilities.detachElement().detach();
+    this.cleanup();
+    event.stopPropagation();
+}
+
 function mouseUpEventListener(event) {
     let city = new City();
     event.srcElement.detach();
     this.map.appendChild(city);
     city.owner = this.owner;
-    city.axial =  event.srcElement.axial;
+    city.axial = event.srcElement.axial;
     MouseUtilities.detachElement().detach();
     this.cleanup();
 }

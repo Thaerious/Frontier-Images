@@ -11,9 +11,10 @@ require("./custom-elements/ResourceTileElement");
 require("./custom-elements/Store");
 require("./custom-elements/Bank");
 require("./custom-elements/Road");
+require("./custom-elements/CardHolder");
+require("./custom-elements/Robber");
 
 /* layout manager for HexAnchor */
-console.log(nidget);
 nidget.layouts.RadialHexLayout = require("./custom-elements/layout-managers/RadialHexLayout");
 
 const CircleMarker = require("./custom-elements/CircleMarker");
@@ -27,27 +28,26 @@ window.addEventListener("load", () => {
 
 class Main {
     async start() {
-        console.log("start");
         let q = document.querySelector("#mapBoundingBox");
         this.attachTargetAnchors();
     }
-    
-    attachTargetAnchors(){
+
+    attachTargetAnchors() {
         let mapAnchor = window.mapAnchor = document.querySelector("#mapAnchor");
         mapAnchor.removeAttribute("layout-manager");
-        let axials = mapAnchor.filter("[playable]").axials;        
-        window.axials = axials;               
-        for (let ax of axials.corners()){
+        let axials = mapAnchor.filter("[playable]").axials;
+        window.axials = axials;
+        for (let ax of axials.corners()) {
             let img = new CircleMarker();
             img.axial = ax;
             mapAnchor.append(img);
             img.setAttribute("marker", "corner");
         }
-        for (let ax of axials.edges()){
+        for (let ax of axials.edges()) {
             let img = new CircleMarker();
             img.axial = ax;
             mapAnchor.append(img);
             img.setAttribute("marker", "edge");
-        }        
+        }
     }
 }

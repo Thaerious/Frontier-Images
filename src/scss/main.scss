@@ -63,15 +63,24 @@ body{
 
 frontier-cardholder{
     position: absolute;
-    background-color: rgba(100, 100, 100, 0.5);
-    width: calc(0.9066 * 90vh);
+    /*background-color: rgba(100, 100, 100, 0.5);*/
+    width: calc(100 / 500 * 100vh);
     height: calc(128 / 500 * 100vh);
-    left: 20vh;
+    left: calc(50%);
     bottom: 0;
     z-index: 10;
     transform: translateY(60%);
     
-    &:hover{
-        transform: translateY(0);
+    .frontier-card{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        transform: rotate(-30deg);
+        z-index: 10;
+        
+        &:hover{
+            transform: rotate(0deg) translateY(-60%);
+            z-index: 15;
+        }
     }
 }

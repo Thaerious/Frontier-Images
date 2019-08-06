@@ -51,20 +51,20 @@ class Road extends NidgetAxialImage {
     }
 
     updateCardinality(value, clearTransformer = true) {
-        if (clearTransformer) this.transformer.clear();        
+        this.transformer.clear().push("translate(-50%, -50%)");
         
         switch (value) {
             case Cardinality.north:
             case Cardinality.south:
-                this.transformer.append().push("rotate(0deg)");
+                this.transformer.push("rotate(0deg)");
                 break;
             case Cardinality.northEast:
             case Cardinality.southWest:
-                this.transformer.append().push("rotate(60deg)");
+                this.transformer.push("rotate(60deg)");
                 break;
             case Cardinality.northWest:
             case Cardinality.southEast:
-                this.transformer.append().push("rotate(-60deg)");
+                this.transformer.push("rotate(-60deg)");
                 break;
             default:
                 throw new Error("Invalid cardinality value: " + value);

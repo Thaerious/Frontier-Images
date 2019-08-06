@@ -8,9 +8,9 @@ class City extends NidgetAxialImage {
 
     connectedCallback(){     
         super.connectedCallback();
-        this.src = "assets/images/cards/card-monopoly.png";
-        this.setAttribute("is", "frontier-card");
-        this.setAttribute("class", "frontier-card");
+        this.src = "assets/images/pieces/city-p0.png";
+        this.setAttribute("is", "frontier-city");
+        this.setAttribute("class", "frontier-city");
     }
 
     static get observedAttributes() {
