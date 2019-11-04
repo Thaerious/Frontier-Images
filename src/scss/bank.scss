@@ -3,7 +3,11 @@
     position: relative;
     font-family: arial;
     width: 15vh;
-    cursor: url('/NidgetDev/assets/images/cursors/discard.ico'), pointer;
+    cursor: pointer;
+    
+    &[discard='true']{
+        cursor: url('/NidgetDev/assets/images/cursors/discard.ico'), pointer;
+    }
 
     .discard{
         position: absolute;
@@ -13,6 +17,15 @@
         height: 15%;
     }
 
+    .select{
+        position: absolute;
+        left: 50%;
+        top: -17.5%;
+        width: 150%;
+        height: 12.5%;
+        transform: translateX(-50%);
+    }
+    
     &[discard='false']{
         .discard{
             display: none;
@@ -59,6 +72,7 @@
                 width: 20%; 
                 top: 5%;
                 left: 10%;
+                pointer-events: none;
             }
         }
     }

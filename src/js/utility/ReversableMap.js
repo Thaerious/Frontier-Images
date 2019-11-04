@@ -16,6 +16,10 @@ class ReversableMap{
         let value = this.map.get(key);
         if (value.hashCode) value = value.hashCode();
                 
+        console.log("rm delete");
+        console.log(key);
+        console.log(value);
+                
         this.map.delete(key);
         this.reverse.delete(value);
     }
@@ -25,8 +29,9 @@ class ReversableMap{
     forEach(func){
         this.map.forEeach(func);
     }
-    get(key){
+    get(key){        
         if (key.hashCode) key = key.hashCode();
+        if (!this.hasKey(key)) throw Error("Unknown key");
         return this.map.get(key);
     }
     getKey(value){
@@ -35,7 +40,6 @@ class ReversableMap{
     }
     hasKey(key){
         if (key.hashCode) key = key.hashCode();
-        console.log(key + ", " + this.map.has(key));
         return this.map.has(key);
     }
     hasValue(value){
@@ -54,6 +58,19 @@ class ReversableMap{
      * @return {undefined}
      */
     set(key, value){
+        console.log("rm set");
+        console.log(key);
+        console.log(value);
+        
+        if (this.hasKey(key)){
+            console.log("has key");
+            this.delete(key);
+        }
+        
+        if (this.hasValue(value)){
+            console.log("has value");
+        }
+        
         if (this.reverse.has(value.hashCode ? value.hashCode() : value)){
             let rKey = this.reverse.get(value);
             if (rKey) this.map.delete(rKey.hashCode ? rKey.hashCode() : rKey);

@@ -6,7 +6,7 @@ const HashMap = require("./HashMap");
  * A map to contain objects with hexes(), edges(), and corners() methods.
  */
 
-class AxialCollection {
+class AxialCollection{
 
     constructor() {
         this.map = new HashMap();
@@ -17,6 +17,22 @@ class AxialCollection {
             rvalue.push(v);
         }
         return rvalue;
+    }
+
+    /**
+     * Create a non-reflective array of all axials in this collection.
+     * @returns {undefined}
+     */
+    toArray(){
+        let rvalue = [];
+        for (let axial of this.map.values()){            
+            rvalue.push(axial);
+        }
+        return rvalue;
+    }
+
+    has(axial){
+        return this.map.has(axial);
     }
 
     add(axial) {

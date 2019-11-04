@@ -3,8 +3,9 @@ const $ = window.$ ? window.$ : require("jquery");
 const NidgetHTMLImage = require("@thaerious/nidget").NidgetHTMLImage;
 
 class ResourceImage extends NidgetHTMLImage{
-    constructor(){
+    constructor(value){
         super();
+        if (value) this.resource = value;
     }
     
     connectedCallback(){
@@ -29,6 +30,14 @@ class ResourceImage extends NidgetHTMLImage{
             resource + 
             ResourceImage.imageSuffix;
         $(this).attr("src", filename);
+    }
+    
+    set resource(value){
+        this.setAttribute(ResourceImage.resourceAttribute, value);
+    }
+    
+    get resource(){
+        return this.getAttribute(ResourceImage.resourceAttribute);
     }
 };
 

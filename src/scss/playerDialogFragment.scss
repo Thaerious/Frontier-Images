@@ -1,7 +1,20 @@
-:host
+//:host
 img{
-    position: relative;
-    width: 100%;
+    position: absolute;
+    width: 20vh;
+}
+
+.hand{
+    z-index: 10;
+    cursor: grabbing;
+}
+
+.hand:hover{
+    opacity: 0.7;
+}
+
+:host([steal='false']) > .hand{
+    display: none;
 }
 
 nidget-text{

@@ -19,10 +19,8 @@ class BuyRoadController {
         this.road = new Road();
         this.road.setAttribute("i", this.i);
 
-        window.road = this.road;
-        document.body.appendChild(this.road);
-        this.road.owner = this.owner;
         MouseUtilities.attachElement(this.road);
+        this.road.owner = this.owner;
 
         this.map.query("tile-element,port-tile-element,resource-tile-element", (ele) =>{
             let eventListener = () => this.hex = ele.axial;
@@ -62,7 +60,7 @@ function cancelEventListener(event) {
     this.bank.wood = this.bank.wood + 1;
     this.bank.brick = this.bank.brick + 1;
 
-    MouseUtilities.detachElement().detach();
+    MouseUtilities.detachElement();
     this.cleanup();
     event.stopPropagation();
 }
@@ -82,9 +80,9 @@ function mouseUpEventListener(event) {
     road.axial =  event.srcElement.axial;
 
     let hex = road.axial.hexes().toArray()[0];
-    let c = hex.cardinality(road.axial, true);
+    let c = hex.cardinality(road.axial);
     road.cardinality = c;
-    MouseUtilities.detachElement().detach();
+    MouseUtilities.element = null;
 
     this.cleanup();
 }

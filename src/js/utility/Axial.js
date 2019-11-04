@@ -127,12 +127,7 @@ class Axial {
      * Direction from this axial to target axial.
      * @returns {undefined}
      */
-    cardinality(target, debug = false) {
-        if (debug){
-            console.log(this)
-            console.log(target)
-            console.log(this.diff(target));
-        }
+    cardinality(target) {
         let diff = this.diff(target);
         
         switch(diff.toString()){
@@ -245,6 +240,13 @@ class Axial {
      */
     diff(that){
         return new Axial(this.x - that.x, this.y - that.y, this.z - that.z);
+    }
+    
+    equals(that){
+        if (this.x !== that.x) return false;
+        if (this.y !== that.y) return false;
+        if (this.z !== that.z) return false;
+        return true;
     }
 }
 

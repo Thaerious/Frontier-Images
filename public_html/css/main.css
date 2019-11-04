@@ -2,13 +2,22 @@
   position: relative;
   font-family: arial;
   width: 15vh;
-  cursor: url("/NidgetDev/assets/images/cursors/discard.ico"), pointer; }
+  cursor: pointer; }
+  #bank[discard='true'] {
+    cursor: url("/NidgetDev/assets/images/cursors/discard.ico"), pointer; }
   #bank .discard {
     position: absolute;
     left: 0px;
     top: -17.5%;
     width: 100%;
     height: 15%; }
+  #bank .select {
+    position: absolute;
+    left: 50%;
+    top: -17.5%;
+    width: 150%;
+    height: 12.5%;
+    transform: translateX(-50%); }
   #bank[discard='false'] .discard {
     display: none; }
   #bank .background {
@@ -40,7 +49,8 @@
         height: 80%;
         width: 20%;
         top: 5%;
-        left: 10%; }
+        left: 10%;
+        pointer-events: none; }
 
 #store {
   position: relative;
@@ -85,7 +95,6 @@ nidget-button-state {
     left: 0px;
     top: 0px; }
 
-/*@import './playerDialogFragment';*/
 #mapBoundingBox {
   position: relative;
   /*border: 1px solid black;*/ }
@@ -146,17 +155,141 @@ body.landscape #mapBoundingBox {
       transform: translate(-50%, -50%);
       pointer-events: none; }
 
+frontier-selector {
+  display: none;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  background-color: rgba(200, 200, 240, 0.75); }
+  frontier-selector .inner {
+    position: absolute;
+    width: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); }
+    frontier-selector .inner nidget-text {
+      position: absolute;
+      height: 15%;
+      left: 37%;
+      font-weight: bolder;
+      cursor: pointer;
+      text-shadow: -2px -2px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; }
+      frontier-selector .inner nidget-text.accept {
+        top: 37%;
+        color: #0a0; }
+      frontier-selector .inner nidget-text.accept:hover {
+        color: #0f0; }
+      frontier-selector .inner nidget-text.cancel {
+        top: 62%;
+        color: #a00; }
+      frontier-selector .inner nidget-text.cancel:hover {
+        color: #f22; }
+    frontier-selector .inner .background {
+      width: 100%;
+      height: 100%;
+      pointerEvents: none; }
+    frontier-selector .inner .targets {
+      position: absolute;
+      width: 19%;
+      height: 70%;
+      left: 3%;
+      top: 26%; }
+      frontier-selector .inner .targets [data-cat] {
+        position: relative;
+        width: 100%;
+        height: 20%;
+        cursor: pointer; }
+        frontier-selector .inner .targets [data-cat] img {
+          display: none;
+          position: relative;
+          width: 40%;
+          hieght: 120%;
+          left: 10%;
+          top: -15%; }
+        frontier-selector .inner .targets [data-cat][selected="true"] img {
+          display: block; }
+        frontier-selector .inner .targets [data-cat][selected="false"]:hover img {
+          display: block;
+          opacity: 0.7; }
+
+frontier-double-selector {
+  /*display: none;*/
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  background-color: rgba(200, 200, 240, 0.75); }
+  frontier-double-selector .inner {
+    position: absolute;
+    width: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); }
+    frontier-double-selector .inner nidget-text {
+      position: absolute;
+      height: 15%;
+      left: 45%;
+      font-weight: bolder;
+      cursor: pointer;
+      text-shadow: -2px -2px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; }
+      frontier-double-selector .inner nidget-text.accept {
+        top: 37%;
+        color: #0a0; }
+      frontier-double-selector .inner nidget-text.accept:hover {
+        color: #0f0; }
+      frontier-double-selector .inner nidget-text.cancel {
+        top: 62%;
+        color: #a00; }
+      frontier-double-selector .inner nidget-text.cancel:hover {
+        color: #f22; }
+    frontier-double-selector .inner .background {
+      width: 100%;
+      height: 100%;
+      pointerEvents: none; }
+    frontier-double-selector .inner .targets {
+      position: absolute;
+      width: 7.5%;
+      height: 70%;
+      top: 26%; }
+      frontier-double-selector .inner .targets.left {
+        left: 3%; }
+      frontier-double-selector .inner .targets.right {
+        left: 10.5%; }
+      frontier-double-selector .inner .targets [data-cat] {
+        position: relative;
+        width: 100%;
+        height: 20%;
+        cursor: pointer; }
+        frontier-double-selector .inner .targets [data-cat] img {
+          display: none;
+          position: relative;
+          width: 80%;
+          left: 20%;
+          top: 5%; }
+        frontier-double-selector .inner .targets [data-cat][selected="true"] img {
+          display: block; }
+        frontier-double-selector .inner .targets [data-cat][selected="false"]:hover img {
+          display: block;
+          opacity: 0.7; }
+
 * {
   box-sizing: border-box;
   padding: 0;
-  margin: 0; }
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  user-select: none; }
 
 body * {
   display: inline-block;
   vertical-align: top; }
 
 body {
-  background-color: pink;
+  /*background-color: pink;*/
   height: 100vh;
   min-width: 1400px;
   overflow-y: hidden;
@@ -170,25 +303,28 @@ body {
   border: 1px solid black;
   height: 100vh; }
 
-.player-dialog-inner {
+.player-dialog-outer {
   position: relative;
-  border: 1px solid green;
-  background-color: rgba(255, 0, 0, 0.4);
-  width: 20vh; }
+  border: 1px solid black;
+  background-color: rgba(255, 0, 0, 0.2);
+  width: 20vh;
+  height: 80%; }
 
 .playerDialog {
-  position: relative; }
+  position: relative;
+  width: 100%;
+  height: 20vh; }
   .playerDialog[data-pid='1'] {
-    background-color: blue;
+    background-color: red;
     /*top: 0%;*/ }
   .playerDialog[data-pid='2'] {
-    background-color: red;
+    background-color: blue;
     /*top: 25%;*/ }
   .playerDialog[data-pid='3'] {
     background-color: green;
     /*top: 50%;*/ }
   .playerDialog[data-pid='4'] {
-    background-color: yellow;
+    background-color: white;
     /*top: 75%;*/ }
 
 frontier-cardholder {

@@ -19,7 +19,6 @@ const ReversableMap = require("../utility/ReversableMap");
 class HexAnchor extends NidgetElement {
     constructor(element) {
         super(element);
-        this.map = new ReversableMap();
 
         /* see https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver */
         let config = {
@@ -37,8 +36,6 @@ class HexAnchor extends NidgetElement {
     }
 
     onResize(prev) {
-        console.log("map resize");
-        console.log(this.width + ", " + this.height);
         this.relocate();
     }
 
@@ -97,25 +94,25 @@ class HexAnchor extends NidgetElement {
     }
 
     onRemove(hexElement) {
-        console.log("onRemove " + hexElement.axial);
-        this.map.delete(hexElement);
         if (this.layoutManager) this.layoutManager.onRemove(hexElement);
     }
 
     relocate() {
-        for (let e of this.children) this.locate(e);
+        for (let e of this.children) this.positionElement(e);
     }
 
     locate(hexElement) {
         if (hexElement.axial === undefined) {
             throw `Only elements with axial attributes can be located on HexAnchor elements, found: ${hexElement.constructor.name}`;
         }
+        this.positionElement(hexElement);
+    }
+
+    positionElement(hexElement) {
+        let loc = null;
+        let ax = hexElement.axial;
 
         $(hexElement).css("position", "absolute");
-
-        let ax = hexElement.axial;
-        let loc = null;
-
         if (ax.isHex()) {
             loc = this.hexLoc(ax);
         } else if (ax.isEdge()) {
@@ -127,7 +124,6 @@ class HexAnchor extends NidgetElement {
         }
 
         hexElement.locate(loc.x, loc.y);
-        this.map.set(hexElement, ax);
     }
 
     /**
@@ -192,14 +188,17 @@ class HexAnchor extends NidgetElement {
         return loc;
     }
 
-    getAxial(hexElement) {
-        return this.map.get(hexElement);
-    }
-
+    /**
+     * Return all elements with axials, with an optional filter.
+     * @param {type} condition a filtering function
+     * @returns {rvalue}
+     */
     getAxials(condition = () => {return true; }){
         let rvalue = new AxialCollection;
-        for (let axial of this.map.values()) {
-            if (condition(axial)) rvalue.add(axial);
+        for (let element of this.childNodes) {
+            if (element.axial !== undefined && condition(element.axial)) {
+                rvalue.add(element.axial);
+            }
         }
         return rvalue;
     }
@@ -207,14 +206,15 @@ class HexAnchor extends NidgetElement {
     /**
      * Return an array of all elements associated with an axial map.  Will ignore
      * axials for which there is no element.
-     * @param {type} AxialCollection
+     * @param {type} axialCollection An iterable object that returns axials.
      * @return {undefined}
      */
     getElements(axialCollection) {
         let rvalue = [];
-        for (let axial of axialCollection) {
-            if (this.map.hasValue(axial)){
-                rvalue.push(this.map.getKey(axial));
+
+        for (let element of this.childNodes) {
+            if (element.axial !== undefined && axialCollection.has(element.axial)) {
+                rvalue.push(element);
             }
         }
         return rvalue;
@@ -238,10 +238,10 @@ class HexAnchor extends NidgetElement {
                 }
             }
         } else {
-            for (let entry of this.map.entries()) {
-                if (condition(entry[1], entry[0])) {
-                    elements.push(entry[0]);
-                    axials.add(entry[1]);
+            for (let element of this.childNodes) {
+                if (element.axial !== undefined && condition(element.axial, element)) {
+                    elements.push(element);
+                    axials.add(element.axial);
                 }
             }
         }

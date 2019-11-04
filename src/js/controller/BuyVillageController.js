@@ -19,12 +19,9 @@ class BuyVillageController {
         this.bank.brick = this.bank.brick - 1;
 
         this.village = new Village();
-
-        window.village = this.village;
-        document.body.appendChild(this.village);
-        this.village.owner = this.owner;
-        this.village.style.transform = "translate(-50%, -50%)";
         MouseUtilities.attachElement(this.village);
+        this.village.owner = this.owner;
+        this.village.style.transform = "translate(-50%, -50%)";        
 
         this.map.query("[marker='corner']", (ele) => {
             ele.show();
@@ -62,23 +59,21 @@ function cancelEventListener(event) {
 
 function mouseUpEventListener(event) {
     let village = new Village();
-    this.map.appendChild(village);
-
+    
     /* set owner and axial (location) */
     village.owner = this.owner;
     village.axial = event.srcElement.axial;
-
+    
     /* remove marker and adjacent markers */
     let adjacentEdges = village.axial.edges();
     let adjacentCorners = adjacentEdges.corners();
     let elements = this.map.getElements(adjacentCorners);
-    for (let e of elements){         
-        console.log(e.tagName + " " + e.getAttribute("is"));
-        e.detach();
-    }
-    MouseUtilities.detachElement().detach();
+    for (let e of elements) e.detach();
+    MouseUtilities.element = null;
     this.cleanup();
     event.stopPropagation();
+
+    this.map.appendChild(village);
 }
 
 module.exports = BuyVillageController;

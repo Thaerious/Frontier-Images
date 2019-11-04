@@ -40,7 +40,7 @@ class HashMap {
         return this.map.get(key.hashCode ? key.hashCode() : key);
     }
     has(key){
-        return this.map.get(key.hashCode ? key.hashCode() : key);
+        return this.map.has(key.hashCode ? key.hashCode() : key);
     }
     keys(){
         return this.hashMap.values();

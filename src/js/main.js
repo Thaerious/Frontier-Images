@@ -13,6 +13,8 @@ require("./custom-elements/Bank");
 require("./custom-elements/Road");
 require("./custom-elements/CardHolder");
 require("./custom-elements/Robber");
+require("./custom-elements/Selector");
+require("./custom-elements/DoubleSelector");
 
 /* layout manager for HexAnchor */
 nidget.layouts.RadialHexLayout = require("./custom-elements/layout-managers/RadialHexLayout");
@@ -21,12 +23,15 @@ const CircleMarker = require("./custom-elements/CircleMarker");
 /* ------------------- */
 
 window.addEventListener("load", () => {
-    let main = new Main();
-    main.start();
-    window.mapanchor = document.querySelector("#mapAnchor");
+    window.main = new Main(0);
+    window.main.start();    
 });
 
 class Main {
+    constructor(owner){
+        this.owner = owner;
+    }
+    
     async start() {
         let q = document.querySelector("#mapBoundingBox");
         this.attachTargetAnchors();
@@ -49,5 +54,23 @@ class Main {
             mapAnchor.append(img);
             img.setAttribute("marker", "edge");
         }
+    }
+    
+    exchangeRate(resource){
+        let mapAnchor = document.querySelector("#mapAnchor");
+        
+        let ports = mapAnchor.filter(`port-tile-element[resource='${resource}'`);
+        let corners = ports.axials.corners();        
+        let result = [];
+        mapAnchor.query(`[axial][owner="${this.owner}"]`, (e)=>{if (corners.has(e.axial)) result.push(e);});        
+        if (result.length !== 0) return 2;
+        
+        ports = mapAnchor.filter(`port-tile-element[resource='three'`);
+        corners = ports.axials.corners();        
+        result = [];
+        mapAnchor.query(`[axial][owner="${this.owner}"]`, (e)=>{if (corners.has(e.axial)) result.push(e);});        
+        if (result.length !== 0) return 3;
+        
+        return 4;
     }
 }

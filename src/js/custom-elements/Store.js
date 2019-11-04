@@ -25,22 +25,22 @@ class Store extends NidgetElement {
     }
 
     buyRoad() {
-        let buyRoadController = new BuyRoadController(0);
+        let buyRoadController = new BuyRoadController(window.main.owner);
         buyRoadController.start();
     }
 
     buyVillage() {
-        let buyRoadController = new BuyVillageController(0);
+        let buyRoadController = new BuyVillageController(window.main.owner);
         buyRoadController.start();        
     }
 
     buyCity() {
-        let buyCityController = new BuyCityController(0);
+        let buyCityController = new BuyCityController(window.main.owner);
         buyCityController.start();  
     }
 
     buyCard() {
-        let buyCardController = new BuyCardController(0);
+        let buyCardController = new BuyCardController(window.main.owner);
         buyCardController.start();  
     }
 }

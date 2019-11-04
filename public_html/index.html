@@ -18,6 +18,7 @@ and open the template in the editor.
         <template id="playerDialog">
             <link href="css/playerDialogFragment.css" rel="stylesheet" type="text/css"/>
             <img src="assets/images/new/player-dialog.png"/>
+            <img class="hand" src="assets/images/new/hand.png"/>
             <nidget-text id="name" class="name" fit="true">NAME 0</nidget-text>
             <nidget-text id="vp" class="number left top" fit="true">0</nidget-text>
             <nidget-text id="soldier" class="number left middle" fit="true">0</nidget-text>
@@ -26,11 +27,11 @@ and open the template in the editor.
             <nidget-text id="utility" class="number right bottom" fit="true">0</nidget-text>  
         </template>
 
-        <div class="player-dialog-inner vert-center" id="playerDialogContainer">
-            <nidget-element data-pid="1" class="playerDialog" template="playerDialog"></nidget-element>
-            <nidget-element data-pid="2" class="playerDialog" template="playerDialog"></nidget-element>
-            <nidget-element data-pid="3" class="playerDialog" template="playerDialog"></nidget-element>
-            <nidget-element data-pid="4" class="playerDialog" template="playerDialog"></nidget-element>
+        <div class="player-dialog-outer vert-center" id="playerDialogContainer">
+            <nidget-element data-pid="1" class="playerDialog" template="playerDialog" steal="false"></nidget-element>
+            <nidget-element data-pid="2" class="playerDialog" template="playerDialog" steal="false"></nidget-element>
+            <nidget-element data-pid="3" class="playerDialog" template="playerDialog" steal="false"></nidget-element>
+            <nidget-element data-pid="4" class="playerDialog" template="playerDialog" steal="false"></nidget-element>
         </div>
 
     <nidget-element id="mapBoundingBox" class="vert-center">
@@ -76,6 +77,73 @@ and open the template in the editor.
             <tile-element hex-type="water"></tile-element>         
         </hex-anchor>            
     </nidget-element>
+
+    <frontier-selector id="frontier-selector">
+        <div class="inner">
+            <img class="background" src="assets/images/new/selector.png">
+            <div class="targets">
+                <nidget-element data-cat="ore" selected="true">
+                    <img src="assets/images/new/black-check.png">
+                </nidget-element>
+                <nidget-element data-cat="wheat" selected="false">
+                    <img src="assets/images/new/black-check.png">
+                </nidget-element>
+                <nidget-element data-cat="wood" selected="false">
+                    <img src="assets/images/new/black-check.png">
+                </nidget-element>
+                <nidget-element data-cat="wool" selected="false">
+                    <img src="assets/images/new/black-check.png">
+                </nidget-element>
+                <nidget-element data-cat="brick" selected="false">
+                    <img src="assets/images/new/black-check.png">
+                </nidget-element>
+            </div>        
+            <nidget-text class="accept" fit="true">Accept</nidget-text>
+            <nidget-text class="cancel" fit="true">Cancel</nidget-text>
+        </div>
+    </frontier-selector>
+    
+    <frontier-double-selector id="frontier-double-selector">
+        <div class="inner">
+            <img class="background" src="assets/images/new/double-selector.png">
+            <nidget-element class="targets left">
+                <nidget-element data-cat="ore" selected="true">
+                    <img src="assets/images/new/black-check.png">
+                </nidget-element>
+                <nidget-element data-cat="wheat" selected="false">
+                    <img src="assets/images/new/black-check.png">
+                </nidget-element>
+                <nidget-element data-cat="wood" selected="false">
+                    <img src="assets/images/new/black-check.png">
+                </nidget-element>
+                <nidget-element data-cat="wool" selected="false">
+                    <img src="assets/images/new/black-check.png">
+                </nidget-element>
+                <nidget-element data-cat="brick" selected="false">
+                    <img src="assets/images/new/black-check.png">
+                </nidget-element>
+            </nidget-element>     
+            <nidget-element class="targets right">
+                <nidget-element data-cat="ore" selected="true">
+                    <img src="assets/images/new/black-check.png">
+                </nidget-element>
+                <nidget-element data-cat="wheat" selected="false">
+                    <img src="assets/images/new/black-check.png">
+                </nidget-element>
+                <nidget-element data-cat="wood" selected="false">
+                    <img src="assets/images/new/black-check.png">
+                </nidget-element>
+                <nidget-element data-cat="wool" selected="false">
+                    <img src="assets/images/new/black-check.png">
+                </nidget-element>
+                <nidget-element data-cat="brick" selected="false">
+                    <img src="assets/images/new/black-check.png">
+                </nidget-element>
+            </nidget-element>                    
+            <nidget-text class="accept" fit="true">Accept</nidget-text>
+            <nidget-text class="cancel" fit="true">Cancel</nidget-text>
+        </div>
+    </frontier-double-selector>    
 
     <frontier-bank discard="false" class="vert-center" id="bank">
         <image class="discard" src="assets/images/new/discard.png"/>    
