@@ -12,7 +12,7 @@
   "contributors": [],
   "dependencies": {
     "@thaerious/nidget": "file:../Nidget",
-    "jquery": "^3.3.1"
+    "jquery": "^3.4.0"
   },
   "scripts": {
     "build-css": "sass ./src/scss/main.scss ./public_html/css/main.css",
