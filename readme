@@ -1,6 +1,0 @@
-npm run watch-css
-compiles files from src/scss to public_html/css (main.css)
-
-npm run watch-js
-compiles files from src/js to public_html (compiled.js)
-
